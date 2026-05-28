@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template Thông Báo Kỹ Thuật Viên - FPT Telecom</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333333;
+            background-color: #f8f9fa;
+            padding: 20px;
+            margin: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #ffffff;
+            border: 1px solid #e1e4e8;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .header {
+            border-bottom: 2px solid #f37021;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: #f37021;
+        }
+        .logo-sub {
+            color: #0056a2;
+            font-weight: bold;
+        }
+        p {
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        .greeting {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        .info-box {
+            background-color: #fdf6f0;
+            border-left: 4px solid #f37021;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        .info-item {
+            margin-bottom: 8px;
+        }
+        .info-item:last-child {
+            margin-bottom: 0;
+        }
+        .label {
+            font-weight: 600;
+            color: #555555;
+        }
+        .value {
+            color: #111111;
+        }
+        .app-section {
+            background-color: #f4f7fa;
+            border: 1px dashed #0056a2;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 25px 0;
+        }
+        .app-title {
+            font-weight: bold;
+            color: #0056a2;
+            margin-bottom: 10px;
+        }
+        .footer {
+            margin-top: 30px;
+            border-top: 1px solid #eeeeee;
+            padding-top: 20px;
+            font-size: 14px;
+            color: #666666;
+        }
+        .signature {
+            font-weight: bold;
+            color: #f37021;
+            margin-top: 5px;
+        }
+        .highlight {
+            font-weight: 600;
+            color: #f37021;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <span class="logo-text">FPT</span> <span class="logo-sub">Telecom</span>
+    </div>
+
+    <div class="greeting">Thân chào Anh/Chị [Tên KH],</div>
+
+    <p>FPT Telecom đã ghi nhận vấn đề gián đoạn tín hiệu tại đường truyền hợp đồng <span class="highlight">[Số hợp đồng]</span> của Anh/Chị tại khu vực <strong>[Phường ..., Tỉnh ...]</strong>.</p>
+    
+    <p>Chúng tôi đang điều phối kỹ thuật viên chuyên trách qua kiểm tra và phục vụ trực tiếp tại nhà Anh/Chị. Thông tin lịch hẹn cụ thể như sau:</p>
+
+    <div class="info-box">
+        <div class="info-item">
+            <span class="label">⏱ Thời gian xử lý dự kiến:</span> 
+            <span class="value">[Giờ:Phút, Ngày/Tháng]</span>
+        </div>
+        <div class="info-item">
+            <span class="label">👨‍🔧 Kỹ thuật viên phục vụ:</span> 
+            <span class="value">[Tên kỹ thuật viên] - [Số điện thoại]</span>
+        </div>
+    </div>
+
+    <div class="app-section">
+        <div class="app-title">📱 Theo dõi tiến độ & Thông tin kỹ thuật viên</div>
+        <p style="margin-bottom: 0;">Vui lòng mở ứng dụng <strong>Hi FPT</strong> (quét hoặc chạm mã QR bên cạnh, đăng nhập bằng SĐT <span class="highlight">[Số điện thoại KH]</span>) để xem chi tiết tiến độ xử lý trực ca của kỹ thuật viên.</p>
+    </div>
+
+    <p>Để tối ưu thời gian, trong những lần tiếp theo khi cần báo hỏng hoặc yêu cầu hỗ trợ khác, Anh/Chị có thể gửi yêu cầu trực tiếp ngay trên ứng dụng <strong>Hi FPT</strong> tại mục <strong>"Hỗ trợ"</strong> hoặc <strong>"Báo hỏng nhanh"</strong> mà không cần chờ đợi kết nối lên tổng đài.</p>
+
+    <p>FPT Telecom chân thành cảm ơn Anh/Chị đã liên hệ và phối hợp.</p>
+
+    <div class="footer">
+        Trân trọng,<br>
+        <div class="signature">Trung tâm Chăm sóc khách hàng FPT Telecom</div>
+    </div>
+</div>
+
+</body>
+</html>
