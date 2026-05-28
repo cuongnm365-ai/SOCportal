@@ -3,267 +3,429 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hệ Thống Quản Lý Template Email - FPT Telecom</title>
+    <title>SOC Command Center Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        :root {
-            --fpt-orange: #f37021;
-            --fpt-blue: #0056a2;
-            --bg-light: #f8f9fa;
-            --text-color: #333333;
-            --border-color: #e1e4e8;
-        }
-
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--bg-light);
-            margin: 0;
-            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0b0f19;
+            color: #e2e8f0;
         }
-
-        .navbar {
-            background-color: #ffffff;
-            border-bottom: 3px solid var(--fpt-orange);
-            padding: 15px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        .ai-gradient {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%);
         }
-
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--fpt-orange);
-            text-decoration: none;
+        .ai-glow {
+            box-shadow: 0 0 25px -5px rgba(139, 92, 246, 0.3);
         }
-
-        .logo span {
-            color: var(--fpt-blue);
+        .glass-panel {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
-
-        .nav-info {
-            font-size: 14px;
-            color: #666;
-            font-weight: 500;
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 30px auto;
-            background: #ffffff;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 30px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-        }
-
-        /* Hệ thống Tabs điều hướng */
-        .tabs-header {
-            display: flex;
-            border-bottom: 2px solid var(--border-color);
-            margin-bottom: 25px;
-        }
-
-        .tab-btn {
-            padding: 12px 25px;
-            font-size: 16px;
-            font-weight: 600;
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: #666;
-            transition: all 0.2s ease;
-            border-bottom: 3px solid transparent;
-            margin-bottom: -2px;
-        }
-
-        .tab-btn:hover {
-            color: var(--fpt-orange);
-        }
-
-        .tab-btn.active {
-            color: var(--fpt-orange);
-            border-bottom-color: var(--fpt-orange);
-        }
-
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        h1, h2 {
-            color: var(--fpt-blue);
-            margin-top: 0;
-        }
-
-        .welcome-box {
-            background: linear-gradient(135deg, #fffcf9 0%, #fff5ed 100%);
-            border-left: 5px solid var(--fpt-orange);
-            padding: 20px;
-            border-radius: 0 8px 8px 0;
-            margin-bottom: 25px;
-        }
-
-        /* Danh sách lưới các Mẫu Email */
-        .template-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .template-card {
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 20px;
-            background: #ffffff;
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .template-card:hover {
-            border-color: var(--fpt-orange);
-            box-shadow: 0 4px 8px rgba(243, 112, 33, 0.1);
-            transform: translateY(-2px);
-        }
-
-        .card-title {
-            font-size: 16px;
-            font-weight: bold;
-            color: #222;
-            margin-bottom: 10px;
-        }
-
-        .card-desc {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 15px;
-            flex-grow: 1;
-        }
-
-        .card-btn {
-            display: inline-block;
-            padding: 8px 15px;
-            background-color: var(--fpt-blue);
+        .nav-active {
+            background: linear-gradient(90deg, rgba(59, 130, 246, 0.15) 0%, rgba(139, 92, 246, 0.05) 100%);
+            border-left: 4px solid #8b5cf6;
             color: #ffffff;
-            text-decoration: none;
-            border-radius: 4px;
-            font-size: 14px;
-            text-align: center;
-            font-weight: 500;
-            transition: background 0.2s;
         }
-
-        .card-btn:hover {
-            background-color: #003d73;
-        }
-
-        .footer {
-            text-align: center;
-            margin-top: 40px;
-            font-size: 13px;
-            color: #888;
-            border-top: 1px solid var(--border-color);
-            padding-top: 20px;
-        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0b0f19; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #3b82f6; }
     </style>
 </head>
-<body>
+<body class="overflow-x-hidden">
 
-    <div class="navbar">
-        <a href="#" class="logo">FPT <span>Telecom</span></a>
-        <div class="nav-info">Trung tâm CSKH & SOC</div>
+    <div class="flex h-screen overflow-hidden">
+        
+        <aside class="w-72 glass-panel flex flex-col justify-between hidden md:flex border-r border-slate-800 z-20">
+            <div>
+                <div class="p-6 border-b border-slate-800 flex items-center gap-3">
+                    <div class="h-9 w-9 rounded-xl ai-gradient flex items-center justify-center ai-glow">
+                        <i class="fa-solid fa-terminal text-white text-sm"></i>
+                    </div>
+                    <div>
+                        <h1 class="font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400 tracking-wide text-lg">SOC COMMAND</h1>
+                        <p class="text-xs text-blue-400 font-medium tracking-widest uppercase">Service Operation</p>
+                    </div>
+                </div>
+                
+                <nav class="p-4 space-y-1">
+                    <p class="px-3 text-xxs font-semibold text-slate-500 uppercase tracking-wider mb-2">Hệ thống</p>
+                    <button onclick="switchTab('trang-chu')" id="btn-trang-chu" class="nav-item w-full flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-white rounded-lg transition-all duration-200 text-sm font-medium nav-active">
+                        <i class="fa-solid fa-chart-pie w-5"></i> Trang chủ Portal
+                    </button>
+                    <button onclick="switchTab('tai-lieu')" id="btn-tai-lieu" class="nav-item w-full flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-white rounded-lg transition-all duration-200 text-sm font-medium">
+                        <i class="fa-solid fa-book-bookmark w-5"></i> Trung tâm Tài liệu
+                    </button>
+                    
+                    <p class="px-3 text-xxs font-semibold text-slate-500 uppercase tracking-wider pt-4 mb-2">Giao tiếp chuẩn hóa</p>
+                    <button onclick="switchTab('template-email')" id="btn-template-email" class="nav-item w-full flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-white rounded-lg transition-all duration-200 text-sm font-medium">
+                        <i class="fa-solid fa-envelope-open-text w-5"></i> Template Email
+                    </button>
+                    <button onclick="switchTab('template-signature')" id="btn-template-signature" class="nav-item w-full flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-white rounded-lg transition-all duration-200 text-sm font-medium">
+                        <i class="fa-solid fa-signature w-5"></i> Template Signature
+                    </button>
+                    
+                    <p class="px-3 text-xxs font-semibold text-slate-500 uppercase tracking-wider pt-4 mb-2">Cẩm nang Xử lý</p>
+                    <button onclick="switchTab('xu-ly-su-co')" id="btn-xu-ly-su-co" class="nav-item w-full flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-white rounded-lg transition-all duration-200 text-sm font-medium">
+                        <i class="fa-solid fa-triangle-exclamation w-5"></i> Sự cố & Khiếu nại
+                    </button>
+                    <button onclick="switchTab('huong-dan-email')" id="btn-huong-dan-email" class="nav-item w-full flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-white rounded-lg transition-all duration-200 text-sm font-medium">
+                        <i class="fa-solid fa-pen-fancy w-5"></i> Kỹ thuật Viết Email
+                    </button>
+                </nav>
+            </div>
+            
+            <div class="p-4 border-t border-slate-800 bg-slate-950/40">
+                <div class="flex items-center gap-3 p-2 rounded-xl bg-slate-900/50 border border-slate-800">
+                    <div class="h-8 w-8 rounded-full bg-slate-800 flex items-center justify-center border border-slate-700 text-blue-400">
+                        <i class="fa-solid fa-robot text-xs animate-pulse"></i>
+                    </div>
+                    <div class="overflow-hidden">
+                        <p class="text-xs font-semibold text-white truncate">AI Architecture Connected</p>
+                        <p class="text-xxs text-emerald-400 flex items-center gap-1"><span class="h-1.5 w-1.5 rounded-full bg-emerald-400 inline-block"></span> Gateway Active</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <div class="flex-1 flex flex-col overflow-hidden">
+            
+            <header class="h-16 glass-panel border-b border-slate-800 px-6 flex items-center justify-between z-10">
+                <div class="flex items-center gap-4">
+                    <button class="md:hidden text-slate-400 hover:text-white text-xl"><i class="fa-solid fa-bars"></i></button>
+                    <div class="relative hidden sm:block">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-slate-500 text-xs"></i>
+                        <input type="text" placeholder="Tìm kiếm tài liệu, biểu mẫu..." class="bg-slate-900/80 border border-slate-800 text-slate-300 text-xs rounded-full pl-9 pr-4 py-2 w-64 focus:outline-none focus:border-purple-500 transition-all">
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-medium">
+                        Môi trường: Vận hành & Phục vụ
+                    </div>
+                    <div class="h-px w-4 bg-slate-800"></div>
+                    <span id="current-time" class="text-xs font-mono text-slate-400"></span>
+                </div>
+            </header>
+
+            <main class="flex-1 overflow-y-auto p-6 md:p-8 space-y-8 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-900 via-[#0b0f19] to-[#0b0f19]">
+                
+                <section id="tab-trang-chu" class="tab-content space-y-8">
+                    <div class="relative rounded-2xl overflow-hidden p-8 md:p-12 glass-panel border border-slate-800 ai-glow">
+                        <div class="absolute top-0 right-0 w-96 h-96 ai-gradient rounded-full filter blur-[100px] opacity-15 -mr-20 -mt-20"></div>
+                        <div class="relative max-w-2xl space-y-4">
+                            <span class="px-3 py-1 rounded-full ai-gradient text-white text-xs font-semibold tracking-wider uppercase">SOC Core Hub</span>
+                            <h2 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight leading-tight">Trung tâm Quản trị, Xử lý & Chuẩn hóa Hệ thống</h2>
+                            <p class="text-slate-400 text-sm md:text-base leading-relaxed">Nền tảng tích hợp quy trình vận hành chuẩn, cung cấp các công cụ tương tác, giải pháp tự động hóa và hệ thống ngôn ngữ dịch vụ mang tính định hướng cao của Service Operation Center.</p>
+                            <div class="pt-2 flex flex-wrap gap-3">
+                                <button onclick="switchTab('xu-ly-su-co')" class="px-5 py-2.5 rounded-xl bg-white text-slate-950 font-semibold text-xs hover:bg-slate-200 transition duration-200 flex items-center gap-2">Xử lý Sự cố Ngay <i class="fa-solid fa-arrow-right"></i></button>
+                                <button onclick="switchTab('template-email')" class="px-5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-300 font-semibold text-xs hover:bg-slate-800 transition duration-200 flex items-center gap-2"><i class="fa-solid fa-envelope"></i> Copy Quick Template</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="glass-panel p-6 rounded-xl border border-slate-800 hover:border-blue-500/50 transition group cursor-pointer" onclick="switchTab('xu-ly-su-co')">
+                            <div class="h-10 w-10 rounded-lg bg-blue-500/10 text-blue-400 border border-blue-500/20 flex items-center justify-center mb-4 group-hover:scale-110 transition"><i class="fa-solid fa-shield-halved text-lg"></i></div>
+                            <h3 class="text-white font-semibold mb-2 text-sm flex items-center justify-between">Xử lý Sự cố & Khiếu nại <i class="fa-solid fa-chevron-right text-xs text-slate-600 group-hover:text-blue-400"></i></h3>
+                            <p class="text-slate-400 text-xs leading-relaxed">Quy trình các bước tiếp nhận thông tin, phân loại sự vụ và xử lý bài bản cho bộ phận vận hành.</p>
+                        </div>
+                        <div class="glass-panel p-6 rounded-xl border border-slate-800 hover:border-purple-500/50 transition group cursor-pointer" onclick="switchTab('template-email')">
+                            <div class="h-10 w-10 rounded-lg bg-purple-500/10 text-purple-400 border border-purple-500/20 flex items-center justify-center mb-4 group-hover:scale-110 transition"><i class="fa-solid fa-wand-magic-sparkles text-lg"></i></div>
+                            <h3 class="text-white font-semibold mb-2 text-sm flex items-center justify-between">Mẫu Cấu trúc Email Chuẩn <i class="fa-solid fa-chevron-right text-xs text-slate-600 group-hover:text-purple-400"></i></h3>
+                            <p class="text-slate-400 text-xs leading-relaxed">Hệ thống thư viện mẫu phản hồi nhanh cho đối tác và khách hàng nội bộ mang vị thế Command.</p>
+                        </div>
+                        <div class="glass-panel p-6 rounded-xl border border-slate-800 hover:border-pink-500/50 transition group cursor-pointer" onclick="switchTab('huong-dan-email')">
+                            <div class="h-10 w-10 rounded-lg bg-pink-500/10 text-pink-400 border border-pink-500/20 flex items-center justify-center mb-4 group-hover:scale-110 transition"><i class="fa-solid fa-brain text-lg"></i></div>
+                            <h3 class="text-white font-semibold mb-2 text-sm flex items-center justify-between">Tư duy ngôn từ & Định hướng AI <i class="fa-solid fa-chevron-right text-xs text-slate-600 group-hover:text-pink-400"></i></h3>
+                            <p class="text-slate-400 text-xs leading-relaxed">Nguyên tắc giao tiếp chuyên nghiệp: Thay đổi tư duy từ "Hỗ trợ" sang vị thế "Phục vụ & Xử lý".</p>
+                        </div>
+                    </div>
+                </section>
+
+
+                <section id="tab-tai-lieu" class="tab-content hidden space-y-6">
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+                        <div>
+                            <h2 class="text-xl font-bold text-white">Trung tâm Tài liệu</h2>
+                            <p class="text-xs text-slate-400">Kho lưu trữ tài nguyên tri thức vận hành toàn diện</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="glass-panel p-5 rounded-xl border border-slate-800 flex gap-4 items-start">
+                            <div class="p-3 bg-slate-800 text-blue-400 rounded-lg"><i class="fa-solid fa-file-pdf text-xl"></i></div>
+                            <div>
+                                <h4 class="text-sm font-semibold text-white">Sổ tay vận hành SOC 2026</h4>
+                                <p class="text-xs text-slate-500 mt-1">Bản cập nhật mới nhất về kiến trúc hệ thống và quy định điều phối.</p>
+                                <button class="text-xs text-blue-400 mt-3 font-medium hover:underline"><i class="fa-solid fa-download mr-1"></i> Tải về (.PDF)</button>
+                            </div>
+                        </div>
+                        <div class="glass-panel p-5 rounded-xl border border-slate-800 flex gap-4 items-start">
+                            <div class="p-3 bg-slate-800 text-green-400 rounded-lg"><i class="fa-solid fa-file-excel text-xl"></i></div>
+                            <div>
+                                <h4 class="text-sm font-semibold text-white">Ma trận phân cấp SLA & Đầu mối Escalation</h4>
+                                <p class="text-xs text-slate-500 mt-1">Bảng thông tin tra cứu nhanh danh sách nhân sự trực ban và cấp độ xử lý sự cố.</p>
+                                <button class="text-xs text-green-400 mt-3 font-medium hover:underline"><i class="fa-solid fa-link mr-1"></i> Xem trực tuyến (Notion/Excel)</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <section id="tab-template-email" class="tab-content hidden space-y-6">
+                    <div class="border-b border-slate-800 pb-4">
+                        <h2 class="text-xl font-bold text-white">Thư viện Template Email Chuẩn hóa</h2>
+                        <p class="text-xs text-slate-400">Sao chép nhanh các biểu mẫu email gửi đối tác hoặc nội bộ với định thức chuyên nghiệp.</p>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="glass-panel rounded-xl border border-slate-800 overflow-hidden">
+                            <div class="p-4 bg-slate-900/60 border-b border-slate-800 flex items-center justify-between">
+                                <span class="text-xs font-semibold text-purple-400 uppercase tracking-wider"><i class="fa-solid fa-bell mr-2"></i>Mẫu 1: Thông báo sự cố diện rộng / Kế hoạch Bảo trì</span>
+                                <button onclick="copyToClipboard('email-template-1')" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 text-xs font-medium transition active:scale-95"><i class="fa-regular fa-copy mr-1"></i> Copy Code / Text</button>
+                            </div>
+                            <div class="p-6 font-mono text-xs text-slate-300 bg-slate-950/40 overflow-x-auto whitespace-pre-wrap leading-relaxed" id="email-template-1">Kính gửi: Quý Đối tác / Quý Phòng ban cá nhân,
+
+Service Operation Center (SOC) trân trọng thông báo về tiến trình cập nhật/xử lý hệ thống định kỳ như sau:
+
+- Nội dung thực hiện: [Nhập tên tác vụ bảo trì / Tên Sự cố]
+- Thời gian ảnh hưởng dự kiến: Từ [Giờ] ngày [Ngày] đến [Giờ] ngày [Ngày]
+- Phạm vi tác động: Hệ thống [Tên Hệ thống] có thể xảy ra tình trạng gián đoạn tín hiệu tạm thời.
+
+Đội ngũ Kỹ sư SOC đang túc trực điều phối trực tiếp để đảm bảo tiến độ xử lý tối ưu nhất. Rất mong Quý Đơn vị lưu ý thông tin để phối hợp vận hành.
+
+Trân trọng phục vụ,
+SOC Command Center.</div>
+                        </div>
+
+                        <div class="glass-panel rounded-xl border border-slate-800 overflow-hidden">
+                            <div class="p-4 bg-slate-900/60 border-b border-slate-800 flex items-center justify-between">
+                                <span class="text-xs font-semibold text-amber-400 uppercase tracking-wider"><i class="fa-solid fa-circle-user mr-2"></i>Mẫu 2: Phản hồi Yêu cầu thiếu thông tin danh tính (Data-Deficient)</span>
+                                <button onclick="copyToClipboard('email-template-2')" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 text-xs font-medium transition active:scale-95"><i class="fa-regular fa-copy mr-1"></i> Copy Code / Text</button>
+                            </div>
+                            <div class="p-6 font-mono text-xs text-slate-300 bg-slate-950/40 overflow-x-auto whitespace-pre-wrap leading-relaxed" id="email-template-2">Kính gửi Anh/Chị,
+
+Hệ thống SOC Command Center đã tiếp nhận yêu cầu liên quan đến [Nội dung sơ bộ]. Tuy nhiên, để có đủ cơ sở dữ liệu tiến hành xác minh và xử lý trên hệ thống, kính đề nghị Anh/Chị bổ sung các thông tin định danh bắt buộc dưới đây:
+
+1. Mã khách hàng / Mã Ticket (nếu có):
+2. Địa điểm / Phân đoạn mạng gặp sự vụ:
+3. Ảnh chụp màn hình lỗi chi tiết hoặc log sự cố:
+
+Ngay khi nhận được thông tin bổ sung chính thức từ Anh/Chị, bộ phận trực ban SOC sẽ lập tức đưa vào quy trình xử lý theo đúng cam kết dịch vụ (SLA).
+
+Trân trọng phục vụ,
+SOC Command Center.</div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <section id="tab-template-signature" class="tab-content hidden space-y-6">
+                    <div class="border-b border-slate-800 pb-4">
+                        <h2 class="text-xl font-bold text-white">Chữ ký Email (Email Signature) Chuẩn hóa</h2>
+                        <p class="text-xs text-slate-400">Đảm bảo tính đồng bộ, chuyên nghiệp mang nhận diện thương hiệu của Command Center.</p>
+                    </div>
+
+                    <div class="glass-panel p-6 rounded-xl border border-slate-800 space-y-6">
+                        <h3 class="text-sm font-semibold text-white">Bản xem trước chữ ký (Preview)</h3>
+                        
+                        <div class="p-6 bg-white text-slate-900 rounded-xl border border-slate-200 max-w-lg">
+                            <div style="font-family: 'Segoe UI', Helvetica, Arial, sans-serif; color: #333333;">
+                                <p style="margin: 0; font-size: 15px; font-weight: bold; color: #1e3a8a;">NGUYỄN MẠNH CƯỜNG</p>
+                                <p style="margin: 2px 0 10px 0; font-size: 12px; color: #4b5563; text-transform: uppercase; tracking: 1px;">Customer Service Staff | Service Operation Center</p>
+                                
+                                <div style="height: 1px; bg-color: #cbd5e1; background: #cbd5e1; margin: 10px 0;"></div>
+                                
+                                <table style="font-size: 12px; color: #4b5563; line-height: 1.6;">
+                                    <tr>
+                                        <td style="padding-right: 10px; font-weight: bold; color: #1e3a8a;">Trung tâm:</td>
+                                        <td>Service Operation Center (SOC) - FPT Telecom</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-right: 10px; font-weight: bold; color: #1e3a8a;">Hotline:</td>
+                                        <td>028 7300 2222 | Ext: [Số máy lẻ]</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-right: 10px; font-weight: bold; color: #1e3a8a;">Email:</td>
+                                        <td>phuongnam.cuongnm3@fpt.net</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-right: 10px; font-weight: bold; color: #1e3a8a;">Địa chỉ:</td>
+                                        <td>Tầng 1, Đường Sáng Tạo, Khu Chế Xuất Tân Thuận, Quận 7, TP. Hồ Chí Minh</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="pt-4">
+                            <button onclick="copyToClipboard('signature-html-code')" class="px-4 py-2 rounded-xl ai-gradient text-white text-xs font-semibold hover:opacity-90 transition flex items-center gap-2"><i class="fa-regular fa-copy"></i> Sao chép mã HTML Chữ ký</button>
+                        </div>
+                        
+                        <textarea id="signature-html-code" class="hidden">
+<div style="font-family: 'Segoe UI', Arial, sans-serif; color: #333333;">
+    <p style="margin: 0; font-size: 15px; font-weight: bold; color: #1e3a8a;">NGUYỄN MẠNH CƯỜNG</p>
+    <p style="margin: 2px 0 10px 0; font-size: 12px; color: #4b5563; text-transform: uppercase;">Customer Service Staff | Service Operation Center</p>
+    <div style="height: 1px; background: #cbd5e1; margin: 10px 0; max-w: 500px;"></div>
+    <table style="font-size: 12px; color: #4b5563; line-height: 1.6;">
+        <tr><td style="font-weight: bold; color: #1e3a8a; padding-right: 10px;">Trung tâm:</td><td>Service Operation Center (SOC) - FPT Telecom</td></tr>
+        <tr><td style="font-weight: bold; color: #1e3a8a; padding-right: 10px;">Hotline:</td><td>028 7300 2222</td></tr>
+        <tr><td style="font-weight: bold; color: #1e3a8a; padding-right: 10px;">Email:</td><td>phuongnam.cuongnm3@fpt.net</td></tr>
+        <tr><td style="font-weight: bold; color: #1e3a8a; padding-right: 10px;">Địa chỉ:</td><td>Tầng 1, Đường Sáng Tạo, Khu Chế Xuất Tân Thuận, Quận 7, TP. HCM</td></tr>
+    </table>
+</div></textarea>
+                    </div>
+                </section>
+
+
+                <section id="tab-xu-ly-su-co" class="tab-content hidden space-y-6">
+                    <div class="border-b border-slate-800 pb-4">
+                        <h2 class="text-xl font-bold text-white">Cẩm nang Hướng dẫn Xử lý Sự cố & Khiếu nại</h2>
+                        <p class="text-xs text-slate-400">Quy trình chuẩn hóa các bước phản ứng nhanh, tối ưu hóa thời gian xử lý (Handling Time).</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="glass-panel p-5 rounded-xl border border-slate-800 relative">
+                            <div class="absolute top-4 right-4 text-3xl font-mono font-extrabold text-slate-800">01</div>
+                            <h4 class="text-sm font-semibold text-blue-400 mb-2">Bước 1: Tiếp nhận & Phân loại</h4>
+                            <p class="text-xs text-slate-400 leading-relaxed">Ghi nhận thông tin thông qua cổng tiếp nhận. Xác minh tính đầy đủ dữ liệu định danh khách hàng. Định vị chính xác phân đoạn lỗi.</p>
+                        </div>
+                        <div class="glass-panel p-5 rounded-xl border border-slate-800 relative">
+                            <div class="absolute top-4 right-4 text-3xl font-mono font-extrabold text-slate-800">02</div>
+                            <h4 class="text-sm font-semibold text-purple-400 mb-2">Bước 2: Xử lý & Điều phối</h4>
+                            <p class="text-xs text-slate-400 leading-relaxed">Chuyển trạng thái xử lý (Processing Status) sang 'Đang xử lý'. Phối hợp phòng kỹ thuật (NOC/Phát triển hạ tầng) nếu lỗi thuộc phân tầng sâu.</p>
+                        </div>
+                        <div class="glass-panel p-5 rounded-xl border border-slate-800 relative">
+                            <div class="absolute top-4 right-4 text-3xl font-mono font-extrabold text-slate-800">03</div>
+                            <h4 class="text-sm font-semibold text-pink-400 mb-2">Bước 3: Nghiệm thu & Phản hồi</h4>
+                            <p class="text-xs text-slate-400 leading-relaxed">Xác nhận khôi phục kết nối/dịch vụ ổn định. Soạn email phản hồi theo đúng biểu mẫu cấu trúc lệnh chuẩn quy định, đóng ticket xử lý.</p>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel p-6 rounded-xl border border-red-500/20 bg-red-950/10 space-y-3">
+                        <h3 class="text-sm font-semibold text-red-400 flex items-center gap-2"><i class="fa-solid fa-triangle-exclamation"></i> Nguyên tắc Vàng khi xử lý Khiếu nại nghiêm trọng</h3>
+                        <ul class="list-disc pl-5 text-xs text-slate-300 space-y-2 leading-relaxed">
+                            <li><strong class="text-white">Tuyệt đối không đẩy trách nhiệm:</strong> Ngôn từ đại diện trung tâm cần thể hiện rõ tính chủ động chịu trách nhiệm kiểm tra toàn trình.</li>
+                            <li><strong class="text-white">Kiểm soát SLA chặt chẽ:</strong> Các ca khiếu nại phải được ưu tiên xử lý rút ngắn ít nhất 30% tổng thời gian quy định thông thường.</li>
+                            <li><strong class="text-white">Cập nhật tiến trình định kỳ:</strong> Nếu sự cố kéo dài quá 2 giờ, bắt buộc phải gửi email cập nhật trạng thái xử lý cho các bên liên quan mỗi 45 phút một lần.</li>
+                        </ul>
+                    </div>
+                </section>
+
+
+                <section id="tab-huong-dan-email" class="tab-content hidden space-y-6">
+                    <div class="border-b border-slate-800 pb-4">
+                        <h2 class="text-xl font-bold text-white">Kỹ thuật Viết Email Chuyên nghiệp (SOC Style Guide)</h2>
+                        <p class="text-xs text-slate-400">Ứng dụng tư duy phục vụ thế hệ mới và định hướng phối hợp cùng Trợ lý AI.</p>
+                    </div>
+
+                    <div class="glass-panel p-6 rounded-xl border border-purple-500/30 bg-purple-950/10 space-y-4">
+                        <div class="flex items-center gap-2 text-purple-400 font-semibold text-sm">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i> Framework Tương tác với AI (Prompting dành cho kiến trúc sư email)
+                        </div>
+                        <p class="text-xs text-slate-300 leading-relaxed">Khi sử dụng các công cụ AI (như ChatGPT, Gemini) để tinh chỉnh lại văn bản thô, hãy áp dụng cấu trúc Prompt đóng khung vai trò dưới đây để nhận kết quả chuẩn xác nhất:</p>
+                        <div class="p-4 bg-slate-950/80 border border-slate-800 rounded-lg font-mono text-xs text-slate-400 select-all">
+"Bạn là một trợ lý AI cao cấp thuộc dự án SOC Email Architect. Hãy tối ưu hóa văn bản thô dưới đây thành một email phản hồi chuyên nghiệp. Quy tắc bắt buộc: Ngôn từ phải mang tính quyết đoán, đại diện cho một Command Center (Trung tâm điều hành) tập trung vào hành động 'Phục vụ' và 'Xử lý', hoàn toàn không sử dụng các từ ngữ mang tính hỗ trợ bị động. Nội dung ngắn gọn, súc tích, đi thẳng vào giải pháp và thời hạn SLA. Văn bản thô: [Dán thông tin của bạn vào đây]"
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="glass-panel p-6 rounded-xl border border-slate-800 space-y-3">
+                            <h4 class="text-xs font-semibold text-red-400 uppercase tracking-wider"><i class="fa-solid fa-circle-xmark mr-1"></i> Cụm từ cần loại bỏ</h4>
+                            <div class="space-y-2 text-xs text-slate-400">
+                                <p><del class="text-slate-600">"Bên em sẽ cố gắng hỗ trợ..."</del> <span class="text-slate-500">(Yếu thế, không cam kết)</span></p>
+                                <p><del class="text-slate-600">"Đây là lỗi của hệ thống hạ tầng đối tác..."</del> <span class="text-slate-500">(Đẩy trách nhiệm)</span></p>
+                                <p><del class="text-slate-600">"Mong anh chị thông cảm chờ đợi..."</del> <span class="text-slate-500">(Thiếu giải pháp hành động cụ thể)</span></p>
+                            </div>
+                        </div>
+                        <div class="glass-panel p-6 rounded-xl border border-slate-800 space-y-3">
+                            <h4 class="text-xs font-semibold text-emerald-400 uppercase tracking-wider"><i class="fa-solid fa-circle-check mr-1"></i> Cụm từ khuyến khích sử dụng</h4>
+                            <div class="space-y-2 text-xs text-slate-300">
+                                <p><strong class="text-emerald-400">"Đội ngũ kỹ sư SOC đang trực tiếp điều phối..."</strong></p>
+                                <p><strong class="text-emerald-400">"Trực ban hệ thống đã ghi nhận và tiến hành xử lý..."</strong></p>
+                                <p><strong class="text-emerald-400">"Đảm bảo tiến độ xử lý tối ưu theo cam kết dịch vụ..."</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </main>
+
+            <footer class="h-10 glass-panel border-t border-slate-800 px-6 flex items-center justify-between text-xxs text-slate-500">
+                <div>&copy; 2026 SOC Command Center Portal. All Rights Reserved.</div>
+                <div class="flex items-center gap-4">
+                    <span class="flex items-center gap-1"><span class="h-1.5 w-1.5 rounded-full bg-emerald-500 inline-block"></span> GitHub Pages Deployed</span>
+                    <span>v2.1.0-AI</span>
+                </div>
+            </footer>
+
+        </div>
     </div>
 
-    <div class="container">
-        <div class="tabs-header">
-            <button class="tab-btn active" onclick="openTab(event, 'trang-chu')">🏠 Trang Chủ</button>
-            <button class="tab-btn" onclick="openTab(event, 'gioi-thieu')">ℹ️ Giới Thiệu</button>
-            <button class="tab-btn" onclick="openTab(event, 'kho-mau')">📁 Kho Mẫu Email</button>
-        </div>
-
-        <div id="trang-chu" class="tab-content active">
-            <div class="welcome-box">
-                <h2>Xin chào Đội ngũ Vận hành & CSKH!</h2>
-                <p style="margin-bottom: 0;">Chào mừng anh/chị đến với Hệ thống Quản lý và Lưu trữ Cấu trúc Mẫu Email/Thông báo chuẩn hóa. Tại đây, mọi template đều được thiết kế tối ưu, giúp tăng tốc độ phản hồi và nâng cao tính chuyên nghiệp khi tương tác với Khách hàng.</p>
-            </div>
-            <h3>Hướng dẫn nhanh:</h3>
-            <ul>
-                <li>Bấm vào tab <strong>"Kho Mẫu Email"</strong> để duyệt danh sách các mẫu thông báo hiện có.</li>
-                <li>Chọn <strong>"Xem chi tiết"</strong> để lấy mã code hoặc sao chép nội dung gửi khách hàng.</li>
-                <li>Tất cả dữ liệu được đồng bộ trực tiếp từ GitHub lên GitBook theo thời gian thực.</li>
-            </ul>
-        </div>
-
-        <div id="gioi-thieu" class="tab-content">
-            <h2>Giới thiệu Dự án Chuẩn hóa Văn phong</h2>
-            <p>Hệ thống này thuộc chiến dịch <strong>Nâng cao Trải nghiệm Khách hàng (CX)</strong> của Trung tâm Chăm sóc Khách hàng phối hợp cùng Trung tâm Điều hành Dịch vụ (SOC) - FPT Telecom.</p>
-            
-            <p><strong>Mục tiêu cốt lõi:</strong></p>
-            <ul>
-                <li><strong>Đồng bộ thương hiệu:</strong> Sử dụng đúng quy chuẩn màu sắc, logo và phông chữ của FPT Telecom trên tất cả các kênh thông báo.</li>
-                <li><strong>Chuyển dịch ngôn từ:</strong> Thay đổi từ tư duy "Hỗ trợ bị động" sang "Xử lý/Phục vụ chủ động" (Ví dụ: Chuyển nút bấm thành <em>Tạo phiếu xử lý nhanh</em> thay vì <em>Báo hỏng</em>).</li>
-                <li><strong>Tối ưu hóa Hi FPT:</strong> Định hướng khách hàng tự vận hành và theo dõi tiến độ qua ứng dụng, giảm tải áp lực cho tổng đài thoại.</li>
-            </ul>
-        </div>
-
-        <div id="kho-mau" class="tab-content">
-            <h2>Danh Sách Mẫu Email / Thông Báo Hiện Có</h2>
-            <p>Vui lòng lựa chọn mẫu nghiệp vụ tương ứng dưới đây để phục vụ công tác:</p>
-            
-            <div class="template-grid">
-                <div class="template-card">
-                    <div>
-                        <div class="card-title">👨‍🔧 1. Thông Báo Cử KTV Báo Hỏng</div>
-                        <div class="card-desc">Gửi cho khách hàng sau khi tiếp nhận sự cố gián đoạn đường truyền, thông báo lịch hẹn và thông tin KTV.</div>
-                    </div>
-                    <a href="bao-hong.html" class="card-btn">Xem chi tiết mẫu</a>
-                </div>
-
-                <div class="template-card">
-                    <div>
-                        <div class="card-title">📝 2. Email Giới Thiệu Dịch Vụ</div>
-                        <div class="card-desc">Mẫu email giới thiệu các tính năng mới của ứng dụng Hi FPT hoặc các gói cước nâng cấp băng thông băng tần.</div>
-                    </div>
-                    <a href="#" class="card-btn">Đang cập nhật...</a>
-                </div>
-
-                <div class="template-card">
-                    <div>
-                        <div class="card-title">📊 3. Khảo Sát Đánh Giá (CSAT)</div>
-                        <div class="card-desc">Gửi tự động sau khi Kỹ thuật viên hoàn tất sửa chữa tại nhà khách hàng nhằm thu thập điểm số hài lòng.</div>
-                    </div>
-                    <a href="#" class="card-btn">Đang cập nhật...</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="footer">
-            &copy; 2026 FPT Telecom. Tài liệu lưu hành nội bộ - Nghiêm cấm sao chép ra ngoài hệ thống.
-        </div>
+    <div id="toast" class="fixed bottom-12 right-6 glass-panel border border-emerald-500/30 px-4 py-3 rounded-xl shadow-xl text-xs text-emerald-400 font-medium hidden flex items-center gap-2 transform translate-y-2 transition-all duration-300 z-50">
+        <i class="fa-solid fa-circle-check text-base"></i> <span id="toast-message">Đã sao chép thành công!</span>
     </div>
 
     <script>
-        function openTab(evt, tabName) {
-            var i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("tab-content");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].classList.remove("active");
-            }
-            tablinks = document.getElementsByClassName("tab-btn");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].classList.remove("active");
-            }
-            document.getElementById(tabName).classList.add("active");
-            evt.currentTarget.classList.add("active");
+        // Tab Switcher Logic (SPA Performance)
+        function switchTab(tabId) {
+            // Ẩn tất cả nội dung các tab
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.add('hidden');
+            });
+            // Hiển thị tab được chọn
+            document.getElementById('tab-' + tabId).classList.remove('hidden');
+
+            // Cập nhật trạng thái active của thanh Sidebar điều hướng
+            document.querySelectorAll('.nav-item').forEach(btn => {
+                btn.classList.remove('nav-active');
+            });
+            document.getElementById('btn-' + tabId).classList.add('nav-active');
         }
+
+        // Sao chép nhanh vào Bộ nhớ đệm (Clipboard)
+        function copyToClipboard(elementId) {
+            const element = document.getElementById(elementId);
+            let textToCopy = '';
+            
+            if (element.tagName === 'TEXTAREA' || element.tagName === 'INPUT') {
+                textToCopy = element.value;
+            } else {
+                textToCopy = element.innerText;
+            }
+
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                showToast("Đã sao chép dữ liệu vào Clipboard thành công!");
+            }).catch(err => {
+                console.error('Không thể sao chép văn bản: ', err);
+            });
+        }
+
+        // Hiển thị thông báo Toast đẹp mắt
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-message').innerText = message;
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3000);
+        }
+
+        // Cập nhật thời gian thực tế hiển thị trên Header
+        function updateClock() {
+            const now = new Date();
+            const options = { timeZone: 'Asia/Ho_Chi_Minh', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+            const timeString = now.toLocaleTimeString('vi-VN', options);
+            const dateString = now.toLocaleDateString('vi-VN', { year: 'numeric', month: '2-digit', day: '2-digit' });
+            document.getElementById('current-time').innerText = `${timeString} | ${dateString}`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
     </script>
 </body>
 </html>
