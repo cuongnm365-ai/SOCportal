@@ -1,6 +1,6 @@
 /* =========================================================
    BỘ NÃO XỬ LÝ (ENGINE) - SOC COMMAND CENTER
-   Bản cập nhật: Hỗ trợ Format (Tiền tệ, Chữ Hoa) & Tính toán Lịch
+   Bản cập nhật: Gỡ SĐT mặc định, xử lý lỗi chữ thường
    ========================================================= */
 
 const SYSTEM_ASSETS = {
@@ -37,9 +37,11 @@ function renderForm(templateId) {
     }
 
     const savedAgentName = localStorage.getItem("soc_agent_name") || "";
+    
+    // Giao diện cố định chỉ còn Tên Agent, Danh xưng và Tên KH
     let html = `
         <div class="mb-4">
-            <label class="soc-label">Tên Agent xử lý (Hệ thống tự ghi nhớ):</label>
+            <label class="soc-label">Tên Agent xử lý:</label>
             <input type="text" id="field_staffName" class="soc-input template-input" data-format="titlecase" placeholder="Ví dụ: Nguyễn Văn A" value="${savedAgentName}">
         </div>
         <div class="flex gap-3 mb-4">
@@ -56,12 +58,9 @@ function renderForm(templateId) {
                 <input type="text" id="field_customerName" class="soc-input template-input" data-format="titlecase" placeholder="Nhập tên KH">
             </div>
         </div>
-        <div class="mb-4">
-            <label class="soc-label">Số điện thoại liên hệ:</label>
-            <input type="text" id="field_phone" class="soc-input template-input" placeholder="Ví dụ: 0912345689">
-        </div>
     `;
 
+    // Sinh các trường tùy biến từ Template
     if (template.fields) {
         template.fields.forEach(field => {
             html += `<div class="mb-4"><label class="soc-label">${field.label}:</label>`;
@@ -88,7 +87,6 @@ function renderForm(templateId) {
         input.addEventListener('input', (e) => {
             if (e.target.id === "field_staffName") localStorage.setItem("soc_agent_name", e.target.value);
             
-            // Xử lý bộ định dạng (Format) tự động
             let format = e.target.dataset.format;
             let cursor = e.target.selectionStart;
             if (format === 'uppercase') {
@@ -117,11 +115,12 @@ function renderEmail() {
         data[key] = input.value || `[${key}]`;
     });
     
+    // Khai báo biến danh xưng
     data.honorific = data.gender;
     data.pronoun = (data.gender === 'Doanh Nghiệp') ? 'Quý công ty' : data.gender;
+    data.pronounLc = data.pronoun.toLowerCase(); // GIẢI QUYẾT LỖI IN THƯỜNG
     if (data.gender === 'Doanh Nghiệp') data.honorific = 'Quý công ty';
 
-    // Chạy bộ tính toán ngầm (Nếu template có hàm computedVars)
     if (typeof template.computedVars === 'function') {
         Object.assign(data, template.computedVars(data));
     }
@@ -140,8 +139,6 @@ function renderEmail() {
 
     let finalBody = replaceVars(template.body).replace('{INFO_BOX}', infoBoxHtml);
     let agentName = data.staffName !== "[staffName]" ? data.staffName : "[Tên Agent]";
-    
-    // Xử lý Chữ ký tùy biến
     let finalSig = template.customSignature ? replaceVars(template.customSignature) : `Trân trọng,<br>Em <b>${agentName}</b> – CSKH FPT Telecom.`;
 
     document.getElementById("emailSubject").innerText = replaceVars(template.subject);
@@ -153,7 +150,6 @@ function copyEmailContent() {
     const contentHtml = document.getElementById('emailContent').innerHTML;
     const sigHtml = document.getElementById('emailSignature').innerHTML;
     const fullHtml = `<div style="font-family: 'Aptos', Arial, sans-serif; font-size: 14.5px; color: #2d3748;">${contentHtml}<br>${sigHtml}</div>`;
-
     if (navigator.clipboard && window.ClipboardItem) {
         const blob = new Blob([fullHtml], { type: 'text/html' });
         navigator.clipboard.write([new ClipboardItem({ 'text/html': blob })]).then(() => showToast("Đã copy NỘI DUNG VÀ FORMAT thành công!"));
