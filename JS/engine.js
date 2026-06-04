@@ -1,6 +1,6 @@
 /* =========================================================
    BỘ NÃO XỬ LÝ (ENGINE) - SOC COMMAND CENTER
-   Bản cập nhật: Gỡ SĐT mặc định, xử lý lỗi chữ thường
+   Bản cập nhật: Tách biệt Font hiển thị Web và Font Copy Outlook
    ========================================================= */
 
 const SYSTEM_ASSETS = {
@@ -32,13 +32,15 @@ function renderForm(templateId) {
     const template = window.SOC_TEMPLATES[templateId];
     
     if (!template) {
-        formContainer.innerHTML = '<p class="text-center text-slate-500 text-xs italic py-10">Vui lòng chọn một mẫu để hệ thống tự động lắp ráp Form...</p>';
+        formContainer.innerHTML = '<p class="text-center text-slate-400 text-sm italic py-10 font-medium">Vui lòng chọn một mẫu để hệ thống tự động lắp ráp Form...</p>';
+        document.getElementById("emailSubject").innerText = "";
+        document.getElementById("emailContent").innerHTML = "<div class='text-center text-slate-300 mt-20 italic text-sm font-medium'>Nội dung email sẽ xuất hiện tại đây...</div>";
+        document.getElementById("emailSignature").innerHTML = "";
         return;
     }
 
     const savedAgentName = localStorage.getItem("soc_agent_name") || "";
     
-    // Giao diện cố định chỉ còn Tên Agent, Danh xưng và Tên KH
     let html = `
         <div class="mb-4">
             <label class="soc-label">Tên Agent xử lý:</label>
@@ -60,7 +62,6 @@ function renderForm(templateId) {
         </div>
     `;
 
-    // Sinh các trường tùy biến từ Template
     if (template.fields) {
         template.fields.forEach(field => {
             html += `<div class="mb-4"><label class="soc-label">${field.label}:</label>`;
@@ -115,10 +116,9 @@ function renderEmail() {
         data[key] = input.value || `[${key}]`;
     });
     
-    // Khai báo biến danh xưng
     data.honorific = data.gender;
     data.pronoun = (data.gender === 'Doanh Nghiệp') ? 'Quý công ty' : data.gender;
-    data.pronounLc = data.pronoun.toLowerCase(); // GIẢI QUYẾT LỖI IN THƯỜNG
+    data.pronounLc = data.pronoun.toLowerCase();
     if (data.gender === 'Doanh Nghiệp') data.honorific = 'Quý công ty';
 
     if (typeof template.computedVars === 'function') {
@@ -134,7 +134,8 @@ function renderEmail() {
             let asset = SYSTEM_ASSETS[template.qrType];
             qrSection = `<td width="140" align="center" valign="middle" style="padding: 15px; border-left: 1px dashed #cbd5e0;"><a href="${asset.link}" target="_blank" style="text-decoration: none;"><img src="${asset.img}" alt="QR" width="130" style="display: block; max-width: 100%; border: 1px solid #cbd5e0; padding: 4px; background: #fff; border-radius: 4px;"></a></td>`;
         }
-        infoBoxHtml = `<table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-left: 4px solid #f26f21; border-radius: 4px; margin: 15px 0;"><tr><td valign="middle" style="padding: 15px; font-family: 'Aptos', Arial, sans-serif; font-size: 14.5px; color: #2d3748; line-height: 1.6;">${replaceVars(template.boxContent)}</td>${qrSection}</tr></table>`;
+        // Gỡ bỏ thuộc tính font-family ở đây để kế thừa font web tự nhiên
+        infoBoxHtml = `<table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-left: 4px solid #f26f21; border-radius: 4px; margin: 15px 0;"><tr><td valign="middle" style="padding: 15px; font-family: inherit; font-size: 14.5px; color: #2d3748; line-height: 1.6;">${replaceVars(template.boxContent)}</td>${qrSection}</tr></table>`;
     }
 
     let finalBody = replaceVars(template.body).replace('{INFO_BOX}', infoBoxHtml);
@@ -149,7 +150,10 @@ function renderEmail() {
 function copyEmailContent() {
     const contentHtml = document.getElementById('emailContent').innerHTML;
     const sigHtml = document.getElementById('emailSignature').innerHTML;
+    
+    // ĐÂY LÀ CHÌA KHÓA: Khi bấm nút Copy, tự động bọc lại bằng font Aptos gửi vào Clipboard
     const fullHtml = `<div style="font-family: 'Aptos', Arial, sans-serif; font-size: 14.5px; color: #2d3748;">${contentHtml}<br>${sigHtml}</div>`;
+    
     if (navigator.clipboard && window.ClipboardItem) {
         const blob = new Blob([fullHtml], { type: 'text/html' });
         navigator.clipboard.write([new ClipboardItem({ 'text/html': blob })]).then(() => showToast("Đã copy NỘI DUNG VÀ FORMAT thành công!"));
