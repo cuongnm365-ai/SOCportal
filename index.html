@@ -10,7 +10,7 @@
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOC Command Center - Neo Pastel</title>
+    <title>SOC Command Center - Cloud AI</title>
     
     <!-- Thư viện giao diện Tailwind & FontAwesome -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -19,25 +19,25 @@
     <!-- Gọi file Giao diện từ thư mục CSS -->
     <link rel="stylesheet" href="CSS/style.css">
 </head>
-<body class="overflow-x-hidden bg-[#1e1e2e] text-[#cdd6f4] font-sans">
+<body class="overflow-x-hidden bg-[#f1f5f9] text-[#334155] font-sans">
     <!-- GTM (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WN4FFVFN" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     
     <div class="flex h-screen overflow-hidden">
         
-        <!-- SIDEBAR GIAO DIỆN CHÍNH -->
-        <aside class="w-72 border-r border-[#313244] flex-col hidden md:flex" style="background: rgba(30, 30, 46, 0.7); backdrop-filter: blur(12px);">
-            <div class="p-6 border-b border-[#313244] flex items-center gap-3">
-                <div class="h-9 w-9 rounded-xl flex items-center justify-center" style="background: linear-gradient(135deg, #cba6f7, #8caaee);">
+        <!-- SIDEBAR GIAO DIỆN CHÍNH (Hiệu ứng kính mờ) -->
+        <aside class="w-72 border-r border-white/60 flex-col hidden md:flex shadow-[4px_0_24px_rgba(148,163,184,0.1)]" style="background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(16px);">
+            <div class="p-6 border-b border-slate-200/50 flex items-center gap-3">
+                <div class="h-10 w-10 rounded-xl flex items-center justify-center shadow-md shadow-indigo-200" style="background: linear-gradient(135deg, #a78bfa, #818cf8);">
                     <i class="fa-solid fa-microchip text-white text-sm"></i>
                 </div>
                 <div>
-                    <h1 class="font-bold text-white tracking-wide text-lg">SOC COMMAND</h1>
-                    <p class="text-xs text-[#8caaee] font-medium uppercase tracking-wider">Neo-Pastel Engine</p>
+                    <h1 class="font-bold text-slate-800 tracking-wide text-lg">SOC COMMAND</h1>
+                    <p class="text-[11px] text-indigo-500 font-bold uppercase tracking-wider">Cloud Pastel AI</p>
                 </div>
             </div>
             <nav class="p-4 space-y-2 mt-4">
-                <div class="px-4 py-3 rounded-lg text-sm font-medium text-white shadow-lg" style="background: linear-gradient(90deg, rgba(203, 166, 247, 0.15), transparent); border-left: 4px solid #cba6f7;">
+                <div class="px-4 py-3 rounded-lg text-sm font-bold text-indigo-700 shadow-sm" style="background: linear-gradient(90deg, rgba(167, 139, 250, 0.15), transparent); border-left: 4px solid #a78bfa;">
                     <i class="fa-solid fa-wand-magic-sparkles w-5"></i> Khởi Tạo Phục Vụ
                 </div>
             </nav>
@@ -45,64 +45,65 @@
 
         <!-- KHU VỰC LÀM VIỆC CHÍNH -->
         <div class="flex-1 flex flex-col overflow-hidden">
-            <header class="h-16 border-b border-[#313244] px-6 flex items-center justify-between" style="background: rgba(30, 30, 46, 0.7);">
-                <h2 class="font-semibold text-[#cdd6f4] tracking-wide">Dynamic Email Generator</h2>
-                <div class="px-3 py-1 rounded-full bg-[#cba6f7]/10 border border-[#cba6f7]/20 text-[#cba6f7] text-xs font-medium">
+            <header class="h-16 border-b border-slate-200/50 px-6 flex items-center justify-between shadow-sm" style="background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(12px);">
+                <h2 class="font-bold text-slate-700 tracking-wide">Dynamic Email Generator</h2>
+                <div class="px-3 py-1 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-600 text-[11px] font-bold uppercase tracking-wide shadow-sm">
                     Chế độ: AI Assist
                 </div>
             </header>
 
-            <main class="flex-1 overflow-y-auto p-6 md:p-8 space-y-6 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#313244] to-[#1e1e2e]">
+            <!-- Nền chính: Gradient tỏa tròn nhẹ nhàng -->
+            <main class="flex-1 overflow-y-auto p-6 md:p-8 space-y-6 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#f8fafc] to-[#f1f5f9]">
                 
-                <div class="border-b border-[#313244] pb-4 flex justify-between items-end">
+                <div class="border-b border-slate-200 pb-4 flex justify-between items-end">
                     <div>
-                        <h2 class="text-xl font-bold text-white">Khởi Tạo Email Phục Vụ</h2>
-                        <p class="text-xs text-[#bac2de] mt-1">Hệ thống sinh form tự động hóa kiến trúc Neo-Pastel.</p>
+                        <h2 class="text-2xl font-black text-slate-800">Khởi Tạo Email Phục Vụ</h2>
+                        <p class="text-sm text-slate-500 mt-1 font-medium">Hệ thống sinh form tự động hóa kiến trúc Cloud Pastel.</p>
                     </div>
-                    <button id="btnReset" class="text-xs px-3 py-1.5 rounded bg-[#45475a] hover:bg-[#585b70] text-[#cdd6f4] transition shadow-md">
-                        <i class="fa-solid fa-rotate-right mr-1"></i> Xóa form
+                    <button id="btnReset" class="text-xs px-4 py-2 rounded-lg bg-white border border-slate-200 hover:bg-slate-50 text-slate-600 font-bold transition shadow-sm">
+                        <i class="fa-solid fa-rotate-right mr-1"></i> Làm mới
                     </button>
                 </div>
 
                 <div class="grid grid-cols-1 xl:grid-cols-12 gap-6">
                     
                     <!-- CỘT 1: FORM TỰ ĐỘNG -->
-                    <div class="xl:col-span-5 p-5 rounded-xl border border-[#313244] flex flex-col gap-4 shadow-lg" style="background: rgba(30, 30, 46, 0.7); backdrop-filter: blur(8px);">
+                    <div class="xl:col-span-5 p-5 rounded-2xl border border-white flex flex-col gap-4 shadow-[0_8px_30px_rgb(0,0,0,0.04)]" style="background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(12px);">
                         
-                        <div class="bg-[#181825]/50 p-4 rounded-lg border border-[#313244]">
-                            <label class="block text-xs font-semibold text-[#bac2de] mb-2 tracking-wide">CHỌN NGHIỆP VỤ / MẪU EMAIL:</label>
-                            <select id="templateSelector" class="w-full p-2 bg-[#1e1e2e] border border-[#45475a] rounded text-sm text-[#cdd6f4] focus:outline-none focus:border-[#cba6f7] transition-colors">
+                        <div class="bg-white/80 p-4 rounded-xl border border-slate-100 shadow-sm">
+                            <label class="block text-[11px] font-bold text-indigo-400 mb-2 tracking-widest uppercase">Chọn nghiệp vụ / Mẫu email:</label>
+                            <select id="templateSelector" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-700 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-100 focus:border-indigo-400 transition-all cursor-pointer">
                                 <option value="">-- Đang tải các kẹp hồ sơ... --</option>
                             </select>
                         </div>
 
                         <div id="dynamicForm" class="space-y-4 mt-2">
-                            <p class="text-center text-[#6c7086] text-xs italic py-10">Vui lòng chọn một mẫu để hệ thống tự động lắp ráp Form nhập liệu...</p>
+                            <p class="text-center text-slate-400 text-sm italic py-10 font-medium">Vui lòng chọn một mẫu để hệ thống tự động lắp ráp Form...</p>
                         </div>
 
                     </div>
 
                     <!-- CỘT 2: PREVIEW VÀ COPY -->
                     <div class="xl:col-span-7 flex flex-col gap-4">
-                        <div class="p-4 rounded-xl border border-[#313244] flex justify-between items-center bg-[#181825]/50 shadow-lg">
-                            <h3 class="text-white font-semibold text-sm">Giao diện Hiển thị Thực tế</h3>
-                            <button id="btnCopy" class="px-4 py-2 rounded-lg bg-[#cba6f7] hover:bg-[#b4befe] text-[#11111b] text-xs font-bold transition shadow-[0_0_15px_rgba(203,166,247,0.3)] flex items-center gap-2">
+                        <div class="p-4 rounded-2xl border border-white flex justify-between items-center shadow-[0_4px_20px_rgb(0,0,0,0.03)]" style="background: rgba(255, 255, 255, 0.8);">
+                            <h3 class="text-slate-700 font-black text-sm uppercase tracking-wide">Giao diện Hiển thị Thực tế</h3>
+                            <button id="btnCopy" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#a78bfa] to-[#818cf8] hover:from-[#8b5cf6] hover:to-[#6366f1] text-white text-xs font-bold transition shadow-lg shadow-indigo-200 flex items-center gap-2 transform hover:-translate-y-0.5">
                                 <i class="fa-regular fa-copy"></i> Copy Nội Dung
                             </button>
                         </div>
                         
-                        <div class="flex-1 bg-[#ffffff] rounded-xl overflow-hidden flex flex-col border border-[#cbd5e1] shadow-xl">
-                            <div class="bg-[#f8fafc] border-b border-[#e2e8f0] p-3 text-sm flex gap-2 items-center">
-                                <span class="text-[#64748b] font-semibold uppercase tracking-wider text-xs">Tiêu đề:</span> 
-                                <span id="emailSubject" class="text-[#e85d04] font-bold truncate block"></span>
+                        <div class="flex-1 bg-white rounded-2xl overflow-hidden flex flex-col border border-slate-200 shadow-xl shadow-slate-200/40">
+                            <div class="bg-slate-50 border-b border-slate-200 p-3.5 text-sm flex gap-2 items-center">
+                                <span class="text-slate-400 font-bold uppercase tracking-wider text-[11px]">Tiêu đề:</span> 
+                                <span id="emailSubject" class="text-[#ea580c] font-black truncate block"></span>
                             </div>
-                            <div class="p-6 overflow-y-auto" style="min-height: 450px;">
-                                <div id="emailContent" style="font-family: 'Aptos', Arial, sans-serif; font-size: 14.5px; color: #334155; line-height: 1.65;">
-                                    <div class="text-center text-[#94a3b8] mt-20 italic text-sm">
+                            <div class="p-8 overflow-y-auto" style="min-height: 450px;">
+                                <div id="emailContent" style="font-family: 'Aptos', Arial, sans-serif; font-size: 14.5px; color: #334155; line-height: 1.7;">
+                                    <div class="text-center text-slate-300 mt-20 italic text-sm font-medium">
                                         Nội dung email sẽ xuất hiện tại đây...
                                     </div>
                                 </div>
-                                <div id="emailSignature" style="margin-top: 22px; padding-top: 16px; border-top: 1px dashed #cbd5e1; font-size: 14px; font-family: 'Aptos', Arial, sans-serif; color: #64748b;"></div>
+                                <div id="emailSignature" style="margin-top: 24px; padding-top: 18px; border-top: 1px dashed #cbd5e1; font-size: 14px; font-family: 'Aptos', Arial, sans-serif; color: #64748b;"></div>
                             </div>
                         </div>
                     </div>
@@ -113,8 +114,8 @@
     </div>
 
     <!-- Thông báo copy -->
-    <div id="toast" class="fixed bottom-12 right-6 bg-[#a6e3a1] border border-[#94e2d5] px-4 py-3 rounded-xl shadow-[0_0_20px_rgba(166,227,161,0.4)] text-[#11111b] text-xs font-bold hidden flex items-center gap-2 z-50">
-        <i class="fa-solid fa-circle-check"></i> <span id="toast-message">Đã sao chép thành công!</span>
+    <div id="toast" class="fixed bottom-12 right-6 bg-white border border-emerald-200 px-5 py-3.5 rounded-2xl shadow-2xl text-emerald-600 text-xs font-black tracking-wide hidden flex items-center gap-2 z-50">
+        <i class="fa-solid fa-circle-check text-emerald-500 text-lg"></i> <span id="toast-message">Đã sao chép thành công!</span>
     </div>
 
     <!-- BỘ NÃO ENGINE TỪ THƯ MỤC JS -->
