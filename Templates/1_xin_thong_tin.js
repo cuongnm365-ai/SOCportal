@@ -19,7 +19,7 @@ window.SOC_TEMPLATES["t_xin_thong_tin"] = {
 
     body: `
         Thân chào {{honorific}} <b>{{customerName}}</b>,<br><br>
-        Em là <b>{{staffName}}</b> – CSKH FPT Telecom.<br><br>
+        Em là <b>{{staffName}}</b> – Nhân viên CSKH FPT Telecom.<br><br>
         Em hiểu những mong muốn từ {{pronoun}}. Để có thể phục vụ {{pronounLc}} tốt nhất, vui lòng cung cấp giúp em thêm thông tin đường truyền đang sử dụng như:<br>
         {INFO_BOX}
         Ngay khi nhận được phản hồi, bên em sẽ kiểm tra tình trạng và có phương án đề xuất phục vụ tốt nhất dành cho hợp đồng của {{pronounLc}}.<br><br>
