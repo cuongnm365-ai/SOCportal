@@ -4,10 +4,10 @@ window.SOC_TEMPLATES["t_xin_thong_tin"] = {
     name: "Mẫu Mới 1: Xin thông tin hợp đồng (Thiếu thông tin)",
     subject: "[Xử Lý] Tiếp nhận làm rõ thông tin thắc mắc hợp đồng",
     
-    // Mẫu này chỉ cần Tên KH và Danh xưng, không khai báo thêm trường nào khác
+    // Mẫu này chỉ cần Tên KH và Agent (Đã có mặc định), không cần SĐT
     fields: [],
     
-    qrType: "cai_dat", 
+    qrType: "bao_hong", 
     
     boxContent: `
         <ul style="margin: 0; padding-left: 20px;">
@@ -20,9 +20,9 @@ window.SOC_TEMPLATES["t_xin_thong_tin"] = {
     body: `
         Thân chào {{honorific}} <b>{{customerName}}</b>,<br><br>
         Em là <b>{{staffName}}</b> – CSKH FPT Telecom.<br><br>
-        Em hiểu những mong muốn từ {{pronoun}}. Để có thể phục vụ {{pronoun.toLowerCase()}} tốt nhất, vui lòng cung cấp giúp em thêm thông tin đường truyền đang sử dụng như:<br>
+        Em hiểu những mong muốn từ {{pronoun}}. Để có thể phục vụ {{pronounLc}} tốt nhất, vui lòng cung cấp giúp em thêm thông tin đường truyền đang sử dụng như:<br>
         {INFO_BOX}
-        Ngay khi nhận được phản hồi, bên em sẽ kiểm tra tình trạng và có phương án đề xuất phục vụ tốt nhất dành cho hợp đồng của {{pronoun.toLowerCase()}}.<br><br>
-        Cảm ơn {{pronoun.toLowerCase()}} <b>{{customerName}}</b> đã liên hệ.
+        Ngay khi nhận được phản hồi, bên em sẽ kiểm tra tình trạng và có phương án đề xuất phục vụ tốt nhất dành cho hợp đồng của {{pronounLc}}.<br><br>
+        Cảm ơn {{pronounLc}} <b>{{customerName}}</b> đã liên hệ.
     `
 };
