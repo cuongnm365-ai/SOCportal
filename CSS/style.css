@@ -1,0 +1,71 @@
+/* =========================================================
+   CSS TÙY CHỈNH CHO SOC COMMAND CENTER - DYNAMIC ENGINE
+   Nơi chứa các định dạng không có sẵn trong thư viện ngoài
+   ========================================================= */
+
+/* ----- 1. Tùy chỉnh thanh cuộn (Scrollbar) cho giao diện Dark Mode ----- */
+::-webkit-scrollbar { 
+    width: 6px; 
+}
+::-webkit-scrollbar-track { 
+    background: #0b0f19; 
+}
+::-webkit-scrollbar-thumb { 
+    background: #1e293b; 
+    border-radius: 4px; 
+}
+::-webkit-scrollbar-thumb:hover { 
+    background: #3b82f6; 
+}
+
+/* ----- 2. Tùy chỉnh các ô nhập liệu (Form Inputs) ----- */
+.soc-input { 
+    width: 100%; 
+    padding: 8px 12px; 
+    background-color: #0f172a; 
+    border: 1px solid #334155; 
+    border-radius: 6px; 
+    color: #f8fafc; 
+    font-size: 13px; 
+    transition: all 0.2s ease-in-out; 
+    font-family: inherit;
+}
+.soc-input:focus { 
+    border-color: #8b5cf6; 
+    outline: none; 
+    box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.2); 
+}
+
+.soc-label { 
+    display: block; 
+    font-size: 12px; 
+    font-weight: 600; 
+    color: #94a3b8; 
+    margin-bottom: 4px; 
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ----- 3. Tùy chỉnh khu vực Nội dung Email (Dành riêng khi copy Outlook) ----- */
+/* Lưu ý: Khu vực này được thiết kế nền trắng chữ đen để không bị lỗi màu khi copy */
+#emailSubject { 
+    font-weight: bold; 
+    color: #f26f21; /* Màu cam đặc trưng FPT */
+}
+
+#emailContent { 
+    font-size: 14.5px; 
+    line-height: 1.6; 
+    color: #2d3748; 
+    font-family: 'Aptos', 'Segoe UI', Arial, sans-serif; 
+}
+
+#emailSignature { 
+    margin-top: 20px; 
+    padding-top: 15px; 
+    border-top: 1px dashed #e2e8f0; 
+    font-size: 14px; 
+    line-height: 1.5; 
+    color: #4a5568; 
+    font-family: 'Aptos', 'Segoe UI', Arial, sans-serif; 
+}
