@@ -4,7 +4,7 @@ window.SOC_TEMPLATES["t_da_xu_ly"] = {
     name: "Mẫu Mới 2: KH đã xử lý xong (Giới thiệu báo hỏng nhanh)",
     subject: "[FPT Telecom] Phản hồi thông tin dịch vụ đường truyền Internet",
     
-    // Chỉ lấy trường SĐT để nhét vào hướng dẫn, ẩn hợp đồng và địa chỉ
+    // Thêm đúng 1 trường SĐT đăng ký
     fields: [
         { id: "phone", label: "Số điện thoại đăng ký", type: "text", placeholder: "Ví dụ: 0912345689" }
     ],
