@@ -8,7 +8,10 @@ window.SOC_TEMPLATES["t_thanh_toan"] = {
         { id: "contractId", label: "Số hợp đồng / Đường truyền", type: "text", format: "uppercase", placeholder: "Ví dụ: SGH859892" },
         { id: "phone", label: "Số điện thoại đăng ký", type: "text", placeholder: "Ví dụ: 0912345689" },
         { id: "address", label: "Địa chỉ đường truyền", type: "text", format: "titlecase", placeholder: "Nhập địa chỉ lắp đặt" },
-        { id: "cycleStart", label: "Ngày bắt đầu trả trước", type: "date" },
+        
+        // ĐIỂM SỬA LỖI: type phải là "date" để hệ thống bung khung chọn lịch
+        { id: "cycleStart", label: "Ngày bắt đầu trả trước", type: "date" }, 
+        
         { id: "monthsCount", label: "Gói cước trả trước", type: "select", options: [
             {value: "6", text: "Trả trước 6 tháng"},
             {value: "12", text: "Trả trước 12 tháng (Tặng 1 tháng)"}
@@ -47,9 +50,9 @@ window.SOC_TEMPLATES["t_thanh_toan"] = {
     body: `
         Thân chào {{honorific}} <b>{{customerName}}</b>,<br><br>
         Em là <b>{{staffName}}</b> - CSKH FPT Telecom.<br><br>
-        Hiện tại hợp đồng <b>{{contractId}}</b> tại địa chỉ <b>{{address}}</b> đã đến kỳ gia hạn trả trước. Em gửi {{pronoun}} thông tin thanh toán cho gói mới như sau:<br>
+        Hiện tại hợp đồng <b>{{contractId}}</b> tại địa chỉ <b>{{address}}</b> đã đến kỳ gia hạn trả trước. Em gửi {{pronounLc}} thông tin thanh toán cho gói mới như sau:<br>
         {INFO_BOX}
-        Khi cần báo hỏng hoặc yêu cầu xử lý khác, {{pronoun}} có thể gửi yêu cầu trực tiếp trên Ứng dụng Hi FPT tại mục <b>"Hỗ trợ"</b> hoặc <b>"Báo hỏng nhanh"</b> để được phục vụ nhanh chóng mà không cần gọi tổng đài ạ.<br><br>
+        Khi cần phục vụ hoặc yêu cầu xử lý khác, {{pronounLc}} có thể gửi yêu cầu trực tiếp trên Ứng dụng Hi FPT tại mục <b>"Phục vụ"</b> hoặc <b>"Báo hỏng nhanh"</b> để được xử lý nhanh chóng mà không cần gọi tổng đài ạ.<br><br>
         FPT Telecom cảm ơn {{honorific}} <b>{{customerName}}</b> đã liên hệ ạ.
     `
 };
