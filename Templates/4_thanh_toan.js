@@ -17,7 +17,6 @@ window.SOC_TEMPLATES["t_thanh_toan"] = {
         { id: "servicePackage", label: "Gói dịch vụ", type: "text", format: "titlecase", placeholder: "Ví dụ: Internet Sky" }
     ],
 
-    // Khối Logic Tính toán ngày tháng
     computedVars: function(data) {
         let labelText = (data.monthsCount === "6") ? "Kỳ hạn 6 tháng" : "Kỳ hạn 13 tháng";
         let cycleText = `<span style="font-style: italic;">Từ ... đến ...</span>`;
