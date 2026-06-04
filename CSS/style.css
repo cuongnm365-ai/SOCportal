@@ -82,7 +82,7 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
     font-size: 14.5px; 
     line-height: 1.65; 
     color: #1e293b; 
-    font-family: 'Aptos', 'Segoe UI', Arial, sans-serif; 
+    font-family: inherit; /* Sử dụng font web hiện đại */
 }
 
 #emailSignature { 
@@ -92,5 +92,5 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
     font-size: 14px; 
     line-height: 1.5; 
     color: #475569; 
-    font-family: 'Aptos', 'Segoe UI', Arial, sans-serif; 
+    font-family: inherit; /* Sử dụng font web hiện đại */
 }
