@@ -1,98 +1,96 @@
 /* =========================================================
-   CSS TÙY CHỈNH SOC COMMAND CENTER - NEO-PASTEL AI THEME
-   Phong cách: Hiện đại, Glassmorphism, Không mỏi mắt & AI Vibe
+   CSS TÙY CHỈNH SOC COMMAND CENTER - CLOUD PASTEL AI THEME (SÁNG)
+   Phong cách: Sáng dịu nhẹ, Glassmorphism, Chống lóa
    ========================================================= */
 
-/* ----- 1. Tùy chỉnh thanh cuộn (Soft Pastel Scrollbar) ----- */
+/* ----- 1. Tùy chỉnh thanh cuộn ----- */
 ::-webkit-scrollbar { 
-    width: 8px; /* Tăng nhẹ độ rộng để dễ thao tác nhưng vẫn thanh mảnh */
+    width: 8px; 
 }
 ::-webkit-scrollbar-track { 
-    background: rgba(30, 30, 46, 0.3); /* Nền track tối dịu, hơi trong suốt */
-    border-radius: 8px;
+    background: transparent; 
 }
 ::-webkit-scrollbar-thumb { 
-    background: #45475a; /* Màu xám pastel đậm, dịu mắt */
+    background: #cbd5e1; 
     border-radius: 8px; 
-    border: 2px solid transparent; /* Tạo viền giả để thanh cuộn thon gọn lại */
-    background-clip: padding-box;
+    border: 2px solid #f8fafc; /* Viền để tạo độ thon */
 }
 ::-webkit-scrollbar-thumb:hover { 
-    background: #cba6f7; /* Chuyển sang Tím Pastel khi hover (Hơi hướng AI) */
-    border: 2px solid transparent;
-    background-clip: padding-box;
+    background: #a78bfa; /* Đổi sang tím nhạt khi hover */
 }
 
-/* ----- 2. Tùy chỉnh các ô nhập liệu (Neo-Glass & Pastel Focus) ----- */
+/* ----- 2. Tùy chỉnh các ô nhập liệu (Sáng tinh khiết, Không chói) ----- */
 .soc-input { 
     width: 100%; 
-    padding: 10px 14px; /* Tăng đệm (padding) để form trông thoáng và hiện đại hơn */
-    background-color: rgba(30, 30, 46, 0.7); /* Xám đen pha chút xanh tím dịu mắt */
-    border: 1px solid #313244; 
-    border-radius: 8px; /* Bo góc mềm mại hơn (8px thay vì 6px) */
-    color: #cdd6f4; /* Chữ trắng pastel mềm, chống lóa khi nhìn lâu */
+    padding: 10px 14px; 
+    background-color: rgba(255, 255, 255, 0.8); /* Nền trắng hơi trong suốt */
+    border: 1px solid #e2e8f0; 
+    border-radius: 10px; /* Bo góc tròn hơn một chút tạo cảm giác thân thiện */
+    color: #334155; 
     font-size: 13.5px; 
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Chuyển động mượt mà mô phỏng AI */
+    font-weight: 500;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
     font-family: inherit;
-    backdrop-filter: blur(4px); /* Hiệu ứng kính mờ Glassmorphism */
+    backdrop-filter: blur(4px); 
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.01);
 }
 
-/* Hiệu ứng khi click vào ô nhập liệu */
+/* Hiệu ứng Glow êm ái khi click vào */
 .soc-input:focus { 
-    border-color: #cba6f7; /* Viền chuyển sang Tím Pastel */
+    border-color: #a78bfa; 
     outline: none; 
-    background-color: rgba(49, 50, 68, 0.9);
-    /* Tạo hiệu ứng sáng tỏa (Glow) đa tầng màu Pastel */
-    box-shadow: 0 0 0 3px rgba(203, 166, 247, 0.15), 0 0 12px rgba(203, 166, 247, 0.1); 
-    transform: translateY(-1px); /* Hiệu ứng ô nhập liệu nhẹ nhàng nổi lên */
+    background-color: #ffffff;
+    box-shadow: 0 4px 15px rgba(167, 139, 250, 0.15), 0 0 0 3px rgba(167, 139, 250, 0.1); 
+    transform: translateY(-1px); 
 }
 
-.soc-input::placeholder {
-    color: #6c7086; /* Màu chữ gợi ý (placeholder) nhạt và tinh tế hơn */
+.soc-input::placeholder { 
+    color: #94a3b8; 
+    font-weight: 400;
 }
 
 .soc-label { 
     display: block; 
-    font-size: 11.5px; 
-    font-weight: 600; 
-    color: #bac2de; /* Xám xanh pastel */
+    font-size: 11px; 
+    font-weight: 800; 
+    color: #64748b; 
     margin-bottom: 6px; 
-    text-transform: uppercase;
-    letter-spacing: 0.8px; /* Dãn khoảng cách chữ cho sang trọng */
+    text-transform: uppercase; 
+    letter-spacing: 0.8px; 
 }
 
-/* --- Tích hợp Fix lỗi tàng hình Icon Lịch với màu dịu nhẹ --- */
+/* Biểu tượng cuốn lịch ngày tháng */
 input[type="date"]::-webkit-calendar-picker-indicator {
-    filter: invert(0.8) sepia(1) hue-rotate(200deg) saturate(150%); /* Biến icon lịch thành màu pastel xanh nhạt */
     cursor: pointer;
-    opacity: 0.5;
-    transition: opacity 0.3s ease;
+    opacity: 0.4;
+    transition: all 0.3s ease;
+    filter: invert(0.4) sepia(1) hue-rotate(200deg) saturate(200%);
+}
+input[type="date"]::-webkit-calendar-picker-indicator:hover { 
+    opacity: 1; 
+    transform: scale(1.1);
 }
 
-input[type="date"]::-webkit-calendar-picker-indicator:hover {
-    opacity: 1; /* Sáng rõ khi rà chuột */
-}
-
-/* ----- 3. Tùy chỉnh khu vực Nội dung Email (Chuẩn Outlook, Chống mỏi mắt) ----- */
+/* ----- 3. Tùy chỉnh khu vực Nội dung Email (Format nguyên gốc Outlook) ----- */
 #emailSubject { 
-    font-weight: 700; 
-    color: #e85d04; /* Tone cam đặc trưng nhưng được tinh chỉnh sâu hơn để không gắt mắt trên nền trắng */
-    font-size: 15px;
+    font-weight: 800; 
+    color: #ea580c; 
+    font-size: 15px; 
 }
 
 #emailContent { 
     font-size: 14.5px; 
-    line-height: 1.65; /* Dãn dòng thêm một chút (1.65) để tạo không gian thở cho đoạn văn dài */
-    color: #334155; 
+    line-height: 1.65; 
+    color: #1e293b; 
     font-family: 'Aptos', 'Segoe UI', Arial, sans-serif; 
 }
 
 #emailSignature { 
-    margin-top: 22px; 
-    padding-top: 16px; 
-    border-top: 1px dashed #cbd5e1; /* Đổi viền sang xám sáng dịu nhẹ */
+    margin-top: 24px; 
+    padding-top: 18px; 
+    border-top: 1px dashed #cbd5e1; 
     font-size: 14px; 
     line-height: 1.5; 
-    color: #64748b; /* Đổi màu chữ ký sang Xám Slate mềm mại hơn */
+    color: #475569; 
     font-family: 'Aptos', 'Segoe UI', Arial, sans-serif; 
 }
