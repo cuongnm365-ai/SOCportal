@@ -12,7 +12,7 @@ window.SOC_TEMPLATES["t_bao_hong"] = {
         { id: "techName", label: "Kỹ thuật viên phục vụ", type: "text", format: "titlecase", placeholder: "Ví dụ: Nguyễn Duy Khanh – 038***4707" }
     ],
     
-    qrType: "theo_doi_ktv",
+    qrType: "bao_hong",
     
     boxContent: `
         <ul style="margin: 0; padding-left: 20px;">
