@@ -1,21 +1,23 @@
-# 📱 Hệ Thống Quản Lý & Lưu Trữ Template Email - FPT Telecom
-
-Dự án này là nơi lưu trữ tập trung các mẫu Email/Thông báo chuẩn hóa phục vụ cho công tác Chăm sóc Khách hàng (CSKH) và Trung tâm Điều hành Dịch vụ (SOC) của FPT Telecom. Hệ thống được đồng bộ tự động để hiển thị giao diện trực quan trên **GitBook**.
-
+---
+cover: .gitbook/assets/ANH BIA.png
+coverY: 147.94370370370368
+coverHeight: 468
 ---
 
-## 📌 Các Đường Link Hệ Thống
+# Tổng Quan
 
-* **Trang chủ Dashboard (Giao diện chính):** `https://<ten-mien-cua-anh>/`
-* **Mẫu Thông báo Cử KTV Báo Hỏng:** `https://<ten-mien-cua-anh>/mau-bao-hong.html`
+### **🧭 Giới thiệu**
 
-*(Lưu ý: Thay thế `<ten-mien-cua-anh>` bằng Custom Domain đã được kích hoạt HTTPS của anh).*
+Tài liệu hướng dẫn nhân sự SOC trong quá trình làm việc:
 
----
+* 💬 Xử lý yêu cầu qua **Social, Email, ...**
+* 🔍 Tra cứu & xác minh thông tin khách hàng
+* ✍️ Chuẩn hóa nội dung phản hồi (comment, inbox, email)
+* ⚙️ Thực hiện đúng quy trình & luồng nội bộ
 
-## 📁 Cấu Trúc Thư Mục Dự Án
+### **📂 Phạm vi nội dung**
 
-```text
-├── README.md                 # File hướng dẫn này (Tài liệu kỹ thuật)
-├── index.html                # Trang chủ chính (Hệ thống điều hướng Tabs)
-└── mau-bao-hong.html         # Mẫu HTML thông báo cử KTV xử lý sự cố
+* 💬 **Social:** Tiếp nhận, phản hồi comment/inbox, xin thông tin KH
+* 📧 **Email:** Format chuẩn, xưng hô, chuyển tiếp nội bộ
+* 🔎 **Tra cứu KH:** Tool tìm SĐT
+* 📝 **Template:** Mẫu nội dung dùng nhanh
