@@ -1,2 +1,0 @@
-# 💳 FPT Paylater
-
