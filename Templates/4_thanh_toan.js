@@ -52,7 +52,7 @@ window.SOC_TEMPLATES["t_thanh_toan"] = {
         Em là <b>{{staffName}}</b> - CSKH FPT Telecom.<br><br>
         Hiện tại hợp đồng <b>{{contractId}}</b> tại địa chỉ <b>{{address}}</b> đã đến kỳ gia hạn trả trước. Em gửi {{pronounLc}} thông tin thanh toán cho gói mới như sau:<br>
         {INFO_BOX}
-        Khi cần phục vụ hoặc yêu cầu xử lý khác, {{pronounLc}} có thể gửi yêu cầu trực tiếp trên Ứng dụng Hi FPT tại mục <b>"Phục vụ"</b> hoặc <b>"Báo hỏng nhanh"</b> để được xử lý nhanh chóng mà không cần gọi tổng đài ạ.<br><br>
-        FPT Telecom cảm ơn {{honorific}} <b>{{customerName}}</b> đã liên hệ ạ.
+        Khi cần phục vụ hoặc yêu cầu xử lý khác, {{pronounLc}} có thể gửi yêu cầu trực tiếp trên Ứng dụng Hi FPT tại mục <b>"Phục vụ"</b> hoặc <b>"Báo hỏng nhanh"</b> để được xử lý nhanh chóng mà không cần gọi tổng đài.<br><br>
+        FPT Telecom cảm ơn {{honorific}} <b>{{customerName}}</b> đã liên hệ.
     `
 };
