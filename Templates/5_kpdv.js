@@ -28,11 +28,11 @@ window.SOC_TEMPLATES["t_kpdv"] = {
     body: `
         Thân chào {{honorific}} <b>{{customerName}}</b>,<br><br>
         Em là <b>{{staffName}}</b> – CSKH FPT Telecom ạ.<br><br>
-        Chúc {{pronoun}} cuối tuần nhiều niềm vui ạ. Với vị trí thuận lợi, em tin {{pronounLc}} sẽ sớm tìm được khách thuê phù hợp.<br><br>
+        Chúc {{pronoun}} cuối tuần nhiều niềm vui. Với vị trí thuận lợi, em tin {{pronounLc}} sẽ sớm tìm được khách thuê phù hợp.<br><br>
         Để thuận tiện cho {{pronounLc}} cũng như người thuê nhà trong tương lai, em xin chia sẻ thông tin về đường truyền Internet hiện có tại địa chỉ <b>{{address}}</b>. <br><br>
         Khi có nhu cầu dùng lại dịch vụ, người thuê mới có thể thực hiện thủ tục khôi phục trong vòng 06 tháng kể từ tháng <b>{{monthSuspend}}</b>. Chỉ cần thanh toán hóa đơn còn tồn tháng <b>{{monthDebt}}</b> và thực hiện yêu cầu khôi phục dịch vụ, đường truyền sẽ sẵn sàng sử dụng mà không cần chờ triển khai mới.<br><br>
-        Do hóa đơn tháng <b>{{monthDebt}}</b> đã được phát hành theo quy định nên hiện chưa thể thu hồi. Em rất mong {{pronounLc}} thông cảm. Em gửi {{pronounLc}} thông tin sơ bộ về hợp đồng này để nắm và chia sẻ tới người thuê nhà nếu cần ạ:<br>
+        Do hóa đơn tháng <b>{{monthDebt}}</b> đã được phát hành theo quy định nên hiện chưa thể thu hồi. Em rất mong {{pronounLc}} thông cảm. Em gửi {{pronounLc}} thông tin sơ bộ về hợp đồng này để nắm và chia sẻ tới người thuê nhà nếu cần:<br>
         {INFO_BOX}
-        Khi cần phục vụ, {{pronounLc}} gửi yêu cầu xử lý ngay trên ứng dụng Hi FPT hoặc phản hồi lại email này để bên em phục vụ ạ.
+        Khi cần phục vụ, {{pronounLc}} gửi yêu cầu xử lý ngay trên ứng dụng Hi FPT hoặc phản hồi lại email này để bên em phục vụ.
     `
 };
