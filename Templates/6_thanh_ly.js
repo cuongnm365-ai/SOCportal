@@ -27,6 +27,6 @@ window.SOC_TEMPLATES["t_thanh_ly"] = {
         Như có trao đổi với {{pronoun}}, hiện bên em sẽ phối hợp cùng phía phụ trách hợp đồng để có phương án phục vụ phù hợp nhất với yêu cầu của {{pronounLc}}. Trong thời gian này, em xin phép gửi lại thông tin hợp đồng để {{pronounLc}} tham khảo và cân nhắc:<br>
         {INFO_BOX}
         Với mong muốn được tiếp tục đồng hành và phục vụ, FPT Telecom linh hoạt trong việc xử lý cho khách hàng chuyển địa điểm sử dụng, có thể thực hiện ngay trên ứng dụng Hi FPT bằng cách vào mục <b>“Phục vụ” > Chuyển địa điểm</b>.<br><br>
-        Em cảm ơn {{pronoun}} <b>{{customerName}}</b> đã phản hồi và liên lạc.
+        Em cảm ơn {{pronoun}} <b>{{customerName}}</b> đã phản hồi và liên lạc với FPT.
     `
 };
