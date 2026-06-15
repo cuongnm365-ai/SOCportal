@@ -23,9 +23,9 @@ window.SOC_TEMPLATES["t_da_xu_ly"] = {
     body: `
         Thân chào {{honorific}} <b>{{customerName}}</b>,<br><br>
         Em là <b>{{staffName}}</b> – CSKH FPT Telecom.<br><br>
-        Em cảm ơn {{pronoun}} đã phản hồi tích cực ạ. Trong quá trình sử dụng không tránh khỏi những vấn đề phát sinh, với mong muốn có được phản ánh của khách hàng sớm nhất, {{honorific}} cài đặt và sử dụng ứng dụng <b>Hi FPT</b> giúp em nhé:<br>
+        Em cảm ơn {{pronoun}} đã phản hồi tích cực. Trong quá trình sử dụng không tránh khỏi những vấn đề phát sinh, với mong muốn tiếp nhận được phản ánh của khách hàng sớm nhất, {{honorific}} cài đặt và sử dụng ứng dụng <b>Hi FPT</b> giúp em nhé:<br>
         {INFO_BOX}
-        Lần tới khi cần báo hỏng hoặc yêu cầu phục vụ khác, {{honorific}} có thể gửi yêu cầu trực tiếp ngay trên Ứng dụng Hi FPT tại mục <b>"Hỗ trợ"</b> hoặc <b>"Báo hỏng nhanh"</b> mà không cần gọi lên tổng đài ạ.<br><br>
+        Lần tới khi cần báo hỏng hoặc yêu cầu phục vụ khác, {{honorific}} có thể gửi yêu cầu trực tiếp ngay trên Ứng dụng Hi FPT tại mục <b>"Hỗ trợ"</b> hoặc <b>"Báo hỏng nhanh"</b> mà không cần gọi lên tổng đài.<br><br>
         Chúc {{honorific}} cuối tuần vui vẻ!
     `
 };
