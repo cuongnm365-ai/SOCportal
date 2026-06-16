@@ -1,6 +1,6 @@
 /* =========================================================
    BỘ NÃO XỬ LÝ (ENGINE) - SOC COMMAND CENTER
-   Bản cập nhật: Tách biệt Font hiển thị Web và Font Copy Outlook
+   Cập nhật: Quản lý Tab Cài đặt, Tự động phân luồng CC/BCC theo Vùng miền
    ========================================================= */
 
 const SYSTEM_ASSETS = {
@@ -13,7 +13,18 @@ const SYSTEM_ASSETS = {
 window.SOC_TEMPLATES = window.SOC_TEMPLATES || {};
 let currentTemplateId = "";
 
+// Cấu hình mặc định nếu chưa lưu
+let socSettings = {
+    defaultBcc: "",
+    mn: { prefixes: "SGH, BDD", emails: "" },
+    mb: { prefixes: "HNFD, HND, HNSH, HTH, TQG", emails: "" }
+};
+
 document.addEventListener("DOMContentLoaded", () => {
+    // 1. Tải Cài Đặt từ LocalStorage
+    loadSettings();
+
+    // 2. Nạp Template vào menu thả xuống
     const selector = document.getElementById("templateSelector");
     selector.innerHTML = '<option value="">-- Chọn nghiệp vụ / Mẫu email phục vụ --</option>';
     for (const [id, template] of Object.entries(window.SOC_TEMPLATES)) {
@@ -23,9 +34,78 @@ document.addEventListener("DOMContentLoaded", () => {
         currentTemplateId = e.target.value;
         renderForm(currentTemplateId);
     });
+
+    // 3. Đăng ký sự kiện Nút bấm
     document.getElementById("btnReset").addEventListener("click", () => renderForm(currentTemplateId));
     document.getElementById("btnCopy").addEventListener("click", copyEmailContent);
+    document.getElementById("btnSaveSettings").addEventListener("click", saveSettings);
+
+    // 4. Logic Chuyển Tabs
+    document.getElementById("tabMainBtn").addEventListener("click", () => switchTab('main'));
+    document.getElementById("tabSettingsBtn").addEventListener("click", () => switchTab('settings'));
 });
+
+function switchTab(tabName) {
+    const mainBtn = document.getElementById("tabMainBtn");
+    const setBtn = document.getElementById("tabSettingsBtn");
+    const tabMain = document.getElementById("tabMain");
+    const tabSettings = document.getElementById("tabSettings");
+
+    if (tabName === 'main') {
+        tabMain.classList.remove("hidden");
+        tabSettings.classList.add("hidden");
+        mainBtn.classList.replace("border-transparent", "border-indigo-600");
+        mainBtn.classList.replace("text-slate-400", "text-indigo-600");
+        setBtn.classList.replace("border-indigo-600", "border-transparent");
+        setBtn.classList.replace("text-indigo-600", "text-slate-400");
+    } else {
+        tabSettings.classList.remove("hidden");
+        tabMain.classList.add("hidden");
+        setBtn.classList.replace("border-transparent", "border-indigo-600");
+        setBtn.classList.replace("text-slate-400", "text-indigo-600");
+        mainBtn.classList.replace("border-indigo-600", "border-transparent");
+        mainBtn.classList.replace("text-indigo-600", "text-slate-400");
+    }
+}
+
+function loadSettings() {
+    const saved = localStorage.getItem("soc_settings_v2");
+    if (saved) {
+        socSettings = JSON.parse(saved);
+    }
+    document.getElementById("setting_bcc").value = socSettings.defaultBcc || "";
+    document.getElementById("setting_mn_prefix").value = socSettings.mn.prefixes || "";
+    document.getElementById("setting_mn_email").value = socSettings.mn.emails || "";
+    document.getElementById("setting_mb_prefix").value = socSettings.mb.prefixes || "";
+    document.getElementById("setting_mb_email").value = socSettings.mb.emails || "";
+}
+
+function saveSettings() {
+    socSettings.defaultBcc = document.getElementById("setting_bcc").value.trim();
+    socSettings.mn.prefixes = document.getElementById("setting_mn_prefix").value.trim();
+    socSettings.mn.emails = document.getElementById("setting_mn_email").value.trim();
+    socSettings.mb.prefixes = document.getElementById("setting_mb_prefix").value.trim();
+    socSettings.mb.emails = document.getElementById("setting_mb_email").value.trim();
+    localStorage.setItem("soc_settings_v2", JSON.stringify(socSettings));
+    showToast("Đã lưu Cấu hình Biến hệ thống thành công!");
+    renderEmail(); // Load lại Preview để ăn ngay CC/BCC
+}
+
+// Hàm nhận diện tự động Email vùng miền từ Số Hợp Đồng
+function getRegionEmail(contractId) {
+    if (!contractId || contractId.includes('[')) return "";
+    const cid = contractId.toUpperCase().trim();
+    
+    const checkMatch = (prefixStr) => {
+        if (!prefixStr) return false;
+        const prefixes = prefixStr.split(',').map(p => p.trim().toUpperCase()).filter(p => p);
+        return prefixes.some(p => cid.startsWith(p));
+    };
+
+    if (checkMatch(socSettings.mn.prefixes)) return socSettings.mn.emails;
+    if (checkMatch(socSettings.mb.prefixes)) return socSettings.mb.emails;
+    return "";
+}
 
 function renderForm(templateId) {
     const formContainer = document.getElementById("dynamicForm");
@@ -36,6 +116,8 @@ function renderForm(templateId) {
         document.getElementById("emailSubject").innerText = "";
         document.getElementById("emailContent").innerHTML = "<div class='text-center text-slate-300 mt-20 italic text-sm font-medium'>Nội dung email sẽ xuất hiện tại đây...</div>";
         document.getElementById("emailSignature").innerHTML = "";
+        document.getElementById("bccWrapper").classList.add("hidden");
+        document.getElementById("ccWrapper").classList.add("hidden");
         return;
     }
 
@@ -125,6 +207,39 @@ function renderEmail() {
         Object.assign(data, template.computedVars(data));
     }
 
+    /* ---- TỰ ĐỘNG XỬ LÝ CC / BCC VÙNG MIỀN ---- */
+    const isInternal = template.isInternal === true;
+    const regionEmail = getRegionEmail(data.contractId || "");
+    const defaultBcc = socSettings.defaultBcc || "";
+    
+    const bccWrapper = document.getElementById("bccWrapper");
+    const ccWrapper = document.getElementById("ccWrapper");
+
+    if (isInternal) {
+        // Nội bộ: Chỉ CC địa chỉ Email Miền (Ẩn BCC)
+        bccWrapper.classList.add("hidden");
+        if (regionEmail) {
+            ccWrapper.classList.remove("hidden");
+            document.getElementById("emailCC").innerText = regionEmail;
+        } else {
+            ccWrapper.classList.add("hidden");
+        }
+    } else {
+        // Bên ngoài: BCC địa chỉ Default + Địa chỉ Email Miền (Ẩn CC)
+        ccWrapper.classList.add("hidden");
+        let bccList = [];
+        if (defaultBcc) bccList.push(defaultBcc);
+        if (regionEmail) bccList.push(regionEmail);
+        
+        if (bccList.length > 0) {
+            bccWrapper.classList.remove("hidden");
+            document.getElementById("emailBCC").innerText = bccList.join(", ");
+        } else {
+            bccWrapper.classList.add("hidden");
+        }
+    }
+    /* ------------------------------------------- */
+
     const replaceVars = (text) => text ? text.replace(/\{\{(\w+)\}\}/g, (match, key) => data[key] !== undefined ? data[key] : match) : "";
 
     let infoBoxHtml = "";
@@ -134,7 +249,6 @@ function renderEmail() {
             let asset = SYSTEM_ASSETS[template.qrType];
             qrSection = `<td width="140" align="center" valign="middle" style="padding: 15px; border-left: 1px dashed #cbd5e0;"><a href="${asset.link}" target="_blank" style="text-decoration: none;"><img src="${asset.img}" alt="QR" width="130" style="display: block; max-width: 100%; border: 1px solid #cbd5e0; padding: 4px; background: #fff; border-radius: 4px;"></a></td>`;
         }
-        // Gỡ bỏ thuộc tính font-family ở đây để kế thừa font web tự nhiên
         infoBoxHtml = `<table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-left: 4px solid #f26f21; border-radius: 4px; margin: 15px 0;"><tr><td valign="middle" style="padding: 15px; font-family: inherit; font-size: 14.5px; color: #2d3748; line-height: 1.6;">${replaceVars(template.boxContent)}</td>${qrSection}</tr></table>`;
     }
 
@@ -151,7 +265,6 @@ function copyEmailContent() {
     const contentHtml = document.getElementById('emailContent').innerHTML;
     const sigHtml = document.getElementById('emailSignature').innerHTML;
     
-    // ĐÂY LÀ CHÌA KHÓA: Khi bấm nút Copy, tự động bọc lại bằng font Aptos gửi vào Clipboard
     const fullHtml = `<div style="font-family: 'Aptos', Arial, sans-serif; font-size: 14.5px; color: #2d3748;">${contentHtml}<br>${sigHtml}</div>`;
     
     if (navigator.clipboard && window.ClipboardItem) {
@@ -159,6 +272,7 @@ function copyEmailContent() {
         navigator.clipboard.write([new ClipboardItem({ 'text/html': blob })]).then(() => showToast("Đã copy NỘI DUNG VÀ FORMAT thành công!"));
     }
 }
+
 function showToast(msg) {
     const toast = document.getElementById('toast');
     document.getElementById('toast-message').innerText = msg;
