@@ -2,6 +2,7 @@ window.SOC_TEMPLATES = window.SOC_TEMPLATES || {};
 
 window.SOC_TEMPLATES["t_gui_noi_bo"] = {
     name: "Mẫu Mới 8: Gửi nội bộ (DVKH/TIN/PNC...)",
+    isInternal: true,
     hideCustomerInfo: true, 
     hideSignature: true, 
     subject: "{{sourcePrefix}}{{sosPrefix}}{{area}} - {{branch}} - {{contractId}} - [Tóm tắt vấn đề]",
