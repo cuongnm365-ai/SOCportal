@@ -1,6 +1,6 @@
 /* =========================================================
    BỘ NÃO XỬ LÝ (ENGINE) - SOC COMMAND CENTER
-   Cập nhật: Quản lý Tab Cài đặt, Tự động phân luồng CC/BCC theo Vùng miền
+   Cập nhật: Quản lý Tab qua Sidebar, Phân luồng CC/BCC
    ========================================================= */
 
 const SYSTEM_ASSETS = {
@@ -40,31 +40,48 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("btnCopy").addEventListener("click", copyEmailContent);
     document.getElementById("btnSaveSettings").addEventListener("click", saveSettings);
 
-    // 4. Logic Chuyển Tabs
-    document.getElementById("tabMainBtn").addEventListener("click", () => switchTab('main'));
-    document.getElementById("tabSettingsBtn").addEventListener("click", () => switchTab('settings'));
+    // 4. Logic Chuyển Menu trên Sidebar
+    document.getElementById("navMainBtn").addEventListener("click", () => switchMenu('main'));
+    document.getElementById("navSettingsBtn").addEventListener("click", () => switchMenu('settings'));
 });
 
-function switchTab(tabName) {
-    const mainBtn = document.getElementById("tabMainBtn");
-    const setBtn = document.getElementById("tabSettingsBtn");
+// Hàm chuyển đổi giao diện và CSS cho Sidebar
+function switchMenu(menuName) {
+    const navMain = document.getElementById("navMainBtn");
+    const navSet = document.getElementById("navSettingsBtn");
     const tabMain = document.getElementById("tabMain");
     const tabSettings = document.getElementById("tabSettings");
 
-    if (tabName === 'main') {
+    const activeStyle = "background: linear-gradient(90deg, rgba(167, 139, 250, 0.15), transparent); border-left: 4px solid #a78bfa;";
+    const activeTextClass = "text-indigo-700";
+    const inactiveTextClass = "text-slate-500";
+
+    if (menuName === 'main') {
         tabMain.classList.remove("hidden");
         tabSettings.classList.add("hidden");
-        mainBtn.classList.replace("border-transparent", "border-indigo-600");
-        mainBtn.classList.replace("text-slate-400", "text-indigo-600");
-        setBtn.classList.replace("border-indigo-600", "border-transparent");
-        setBtn.classList.replace("text-indigo-600", "text-slate-400");
+
+        // Styling Menu Vận Hành
+        navMain.style.cssText = activeStyle;
+        navMain.classList.remove(inactiveTextClass, "hover:bg-slate-100", "hover:text-slate-700", "border-transparent");
+        navMain.classList.add(activeTextClass, "shadow-sm");
+
+        // Reset Menu Cài Đặt
+        navSet.style.cssText = "";
+        navSet.classList.remove(activeTextClass, "shadow-sm");
+        navSet.classList.add(inactiveTextClass, "hover:bg-slate-100", "hover:text-slate-700", "border-transparent");
     } else {
         tabSettings.classList.remove("hidden");
         tabMain.classList.add("hidden");
-        setBtn.classList.replace("border-transparent", "border-indigo-600");
-        setBtn.classList.replace("text-slate-400", "text-indigo-600");
-        mainBtn.classList.replace("border-indigo-600", "border-transparent");
-        mainBtn.classList.replace("text-indigo-600", "text-slate-400");
+
+        // Styling Menu Cài Đặt
+        navSet.style.cssText = activeStyle;
+        navSet.classList.remove(inactiveTextClass, "hover:bg-slate-100", "hover:text-slate-700", "border-transparent");
+        navSet.classList.add(activeTextClass, "shadow-sm");
+
+        // Reset Menu Vận Hành
+        navMain.style.cssText = "";
+        navMain.classList.remove(activeTextClass, "shadow-sm");
+        navMain.classList.add(inactiveTextClass, "hover:bg-slate-100", "hover:text-slate-700", "border-transparent");
     }
 }
 
